@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="glow" cx="70%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#FF6B00" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0F0502" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowL" cx="10%" cy="80%" r="45%">
+      <stop offset="0%" stop-color="#A020F0" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#0F0502" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0F0502"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect width="1200" height="630" fill="url(#glowL)"/>
+
+  <!-- Orange left edge accent -->
+  <rect x="0" y="0" width="6" height="630" fill="#FF6B00"/>
+
+  <!-- Badge -->
+  <rect x="64" y="64" width="280" height="32" rx="16" fill="#FF6B00" fill-opacity="0.15" stroke="#FF6B00" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="104" y="84" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#FF6B00" letter-spacing="2" text-anchor="start">AFRICA'S WEB3 PLATFORM</text>
+
+  <!-- Main heading -->
+  <text x="64" y="210" font-family="Arial Black, Arial, sans-serif" font-size="96" font-weight="900" fill="white" letter-spacing="-2">AfroPlay</text>
+
+  <!-- Subheading -->
+  <text x="64" y="280" font-family="Arial, sans-serif" font-size="32" font-weight="400" fill="#9ca3af">Africa's Web3 Gaming &amp; Media Platform</text>
+
+  <!-- Divider -->
+  <rect x="64" y="316" width="80" height="4" rx="2" fill="#FF6B00"/>
+
+  <!-- Stats row -->
+  <text x="64" y="380" font-family="Arial Black, Arial, sans-serif" font-size="42" font-weight="900" fill="#FF6B00">60M+</text>
+  <text x="64" y="412" font-family="Arial, sans-serif" font-size="16" fill="#6b7280" letter-spacing="1">AFRICAN GAMERS</text>
+
+  <rect x="220" y="358" width="2" height="60" fill="#374151"/>
+
+  <text x="240" y="380" font-family="Arial Black, Arial, sans-serif" font-size="42" font-weight="900" fill="#FF6B00">24+</text>
+  <text x="240" y="412" font-family="Arial, sans-serif" font-size="16" fill="#6b7280" letter-spacing="1">PODCAST EPISODES</text>
+
+  <!-- URL -->
+  <text x="64" y="560" font-family="Arial, sans-serif" font-size="20" fill="#4b5563">afroplay.org</text>
+
+  <!-- Right decorative circle -->
+  <circle cx="940" cy="315" r="220" fill="none" stroke="#FF6B00" stroke-opacity="0.08" stroke-width="2"/>
+  <circle cx="940" cy="315" r="160" fill="none" stroke="#FF6B00" stroke-opacity="0.06" stroke-width="1"/>
+  <circle cx="940" cy="315" r="90" fill="#FF6B00" fill-opacity="0.06"/>
+</svg>

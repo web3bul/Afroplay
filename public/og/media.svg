@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="glowR" cx="75%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#FF6B00" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#0F0502" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowL" cx="5%" cy="70%" r="40%">
+      <stop offset="0%" stop-color="#A020F0" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#0F0502" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0F0502"/>
+  <rect width="1200" height="630" fill="url(#glowR)"/>
+  <rect width="1200" height="630" fill="url(#glowL)"/>
+
+  <!-- Orange left edge accent -->
+  <rect x="0" y="0" width="6" height="630" fill="#FF6B00"/>
+
+  <!-- Live badge -->
+  <rect x="64" y="64" width="210" height="32" rx="16" fill="#FF6B00" fill-opacity="0.15" stroke="#FF6B00" stroke-opacity="0.4" stroke-width="1"/>
+  <circle cx="86" cy="80" r="5" fill="#FF6B00"/>
+  <text x="100" y="84" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#FF6B00" letter-spacing="2">LIVE INTERVIEW SERIES</text>
+
+  <!-- Main heading -->
+  <text x="64" y="200" font-family="Arial Black, Arial, sans-serif" font-size="88" font-weight="900" fill="white" letter-spacing="-2">Onchain</text>
+  <text x="64" y="298" font-family="Arial Black, Arial, sans-serif" font-size="88" font-weight="900" fill="#FF6B00" letter-spacing="-2">Africa</text>
+
+  <!-- Subheading -->
+  <text x="64" y="356" font-family="Arial, sans-serif" font-size="26" font-weight="400" fill="#9ca3af">Live Interviews with African Web3 Founders</text>
+
+  <!-- Divider -->
+  <rect x="64" y="388" width="80" height="4" rx="2" fill="#FF6B00"/>
+
+  <!-- Host line -->
+  <text x="64" y="440" font-family="Arial, sans-serif" font-size="18" fill="#6b7280">Hosted by</text>
+  <text x="148" y="440" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="white">Web3bull</text>
+  <text x="230" y="440" font-family="Arial, sans-serif" font-size="18" fill="#6b7280">· AfroPlay</text>
+
+  <!-- Episode count -->
+  <text x="64" y="496" font-family="Arial Black, Arial, sans-serif" font-size="38" font-weight="900" fill="#FF6B00">24+</text>
+  <text x="64" y="524" font-family="Arial, sans-serif" font-size="15" fill="#6b7280" letter-spacing="1">EPISODES RELEASED</text>
+
+  <!-- URL -->
+  <text x="64" y="580" font-family="Arial, sans-serif" font-size="18" fill="#4b5563">afroplay.org/media</text>
+
+  <!-- Right decorative mic silhouette area -->
+  <circle cx="950" cy="315" r="200" fill="none" stroke="#FF6B00" stroke-opacity="0.07" stroke-width="2"/>
+  <circle cx="950" cy="315" r="130" fill="#FF6B00" fill-opacity="0.05"/>
+</svg>
