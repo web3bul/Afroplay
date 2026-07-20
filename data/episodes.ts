@@ -14,6 +14,20 @@ export interface Episode {
 }
 
 export const episodes: Episode[] = [
+  // ── EP 29 — aired 2026-07-19 ────────────────────────────────────────────────
+  {
+    id: 29,
+    videoId: "dkpmMX4r45U",
+    title: "Onchain Africa with @demitchy_ : how dextopus lets any Web3 product accept users from 74 chains",
+    guest: "Demitchy",
+    guestHandle: "@demitchy_",
+    guestImage: "",
+    project: "Dextopus",
+    projectHandle: "@dextopus",
+    duration: "1:00:00",
+    tags: ["Infrastructure", "Multichain", "Web3"],
+    youtubeUrl: "https://www.youtube.com/watch?v=dkpmMX4r45U",
+  },
   // ── EP 28 — aired 2026-07-16 ────────────────────────────────────────────────
   {
     id: 28,
