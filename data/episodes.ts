@@ -14,7 +14,35 @@ export interface Episode {
 }
 
 export const episodes: Episode[] = [
-  // ── EP 26 — upcoming live (2026-07-06 13:00) ────────────────────────────────
+  // ── EP 28 — aired 2026-07-16 ────────────────────────────────────────────────
+  {
+    id: 28,
+    videoId: "wcCVFAFQJwg",
+    title: "Can Streamlivr Really Replace TikTok? Live with @its_mojeezy (@streamlivr_app)",
+    guest: "Mo'jeezy",
+    guestHandle: "@its_mojeezy",
+    guestImage: "",
+    project: "Streamlivr",
+    projectHandle: "@streamlivr_app",
+    duration: "1:14:16",
+    tags: ["Social", "Streaming", "Web3"],
+    youtubeUrl: "https://www.youtube.com/watch?v=wcCVFAFQJwg",
+  },
+  // ── EP 27 — aired 2026-07-14 ────────────────────────────────────────────────
+  {
+    id: 27,
+    videoId: "Mm2sS16UQHs",
+    title: "Live on Onchain Africa: Trading Tokenized Assets 24/7 with @L7UMVS (@BladTrade)",
+    guest: "Leu",
+    guestHandle: "@L7UMVS",
+    guestImage: "",
+    project: "BladTrade",
+    projectHandle: "@BladTrade",
+    duration: "1:12:01",
+    tags: ["Trading", "RWA", "DeFi"],
+    youtubeUrl: "https://www.youtube.com/watch?v=Mm2sS16UQHs",
+  },
+  // ── EP 26 — aired 2026-07-07 ────────────────────────────────────────────────
   {
     id: 26,
     videoId: "kloyjJjplMc",
@@ -24,10 +52,9 @@ export const episodes: Episode[] = [
     guestImage: "/guests/john_babodor.jpg",
     project: "RemmintPay",
     projectHandle: "@RemmintPay",
-    duration: "",
+    duration: "1:02:33",
     tags: ["Payments", "Fintech", "Crypto"],
     youtubeUrl: "https://www.youtube.com/watch?v=kloyjJjplMc",
-    status: 'upcoming',
   },
   // ── EP 25 — aired 2026-07-02 ────────────────────────────────────────────────
   {
