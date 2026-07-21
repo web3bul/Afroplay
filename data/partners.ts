@@ -10,4 +10,5 @@ export const partners: PartnerNode[] = [
   { name: 'Slingshot DAO', short: 'SD', logoUrl: '/partner/slingshot.jpg', x: 50.0, y: 78.0 },
   { name: 'SOV',           short: 'SV', logoUrl: '/partner/sov.jpg',       x: 25.7, y: 64.0 },
   { name: 'Solforge',      short: 'SF', logoUrl: '/partner/sol.jpg',       x: 25.7, y: 36.0 },
+  { name: 'Syntrei',       short: 'SY', logoUrl: 'https://pbs.twimg.com/profile_images/1974260932952936450/TZuddzGl_400x400.jpg', x: 22.4, y: 50.0 },
 ];
