@@ -21,7 +21,7 @@ export const episodes: Episode[] = [
     title: "Yield From Real Businesses, Not Market Cycles: @_karlagod (@BitsaveProtocol)",
     guest: "KarlaGod",
     guestHandle: "@_karlagod",
-    guestImage: "https://pbs.twimg.com/profile_images/2057140082335694848/X32IK6L2_400x400.jpg",
+    guestImage: "https://pbs.twimg.com/profile_images/1985218582263848960/hx1TpLT__400x400.jpg",
     project: "Bitsave Protocol",
     projectHandle: "@BitsaveProtocol",
     duration: "1:13:26",
