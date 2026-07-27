@@ -14,6 +14,34 @@ export interface Episode {
 }
 
 export const episodes: Episode[] = [
+  // ── EP 31 — aired 2026-07-24 ────────────────────────────────────────────────
+  {
+    id: 31,
+    videoId: "8FZa0fVSw3o",
+    title: "Yield From Real Businesses, Not Market Cycles: @_karlagod (@BitsaveProtocol)",
+    guest: "KarlaGod",
+    guestHandle: "@_karlagod",
+    guestImage: "",
+    project: "Bitsave Protocol",
+    projectHandle: "@BitsaveProtocol",
+    duration: "1:13:26",
+    tags: ["DeFi", "Yield", "Savings"],
+    youtubeUrl: "https://www.youtube.com/watch?v=8FZa0fVSw3o",
+  },
+  // ── EP 30 — aired 2026-07-23 ────────────────────────────────────────────────
+  {
+    id: 30,
+    videoId: "oAJhBOzjmPg",
+    title: "Stop Missing Grants & Bounties: @0x_beni_ ( @HackListHQ) on Onchain Africa",
+    guest: "Beni",
+    guestHandle: "@0x_beni_",
+    guestImage: "",
+    project: "HackList",
+    projectHandle: "@HackListHQ",
+    duration: "54:45",
+    tags: ["Grants", "Developer", "Web3"],
+    youtubeUrl: "https://www.youtube.com/watch?v=oAJhBOzjmPg",
+  },
   // ── EP 29 — aired 2026-07-19 ────────────────────────────────────────────────
   {
     id: 29,
