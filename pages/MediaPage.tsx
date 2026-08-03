@@ -1032,7 +1032,7 @@ const MediaPage: React.FC = () => {
                 href={CALENDLY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-1 md:gap-2 px-3 md:px-6 py-2.5 md:py-3.5 bg-afro-orange hover:bg-orange-600 rounded-lg text-white font-bold transition-colors neon-box text-xs md:text-base"
+                className="w-full min-h-[44px] inline-flex items-center justify-center gap-1 md:gap-2 px-3 md:px-6 py-2.5 md:py-3.5 bg-afro-orange hover:bg-orange-600 rounded-lg text-white font-bold transition-colors neon-box text-xs md:text-base"
               >
                 <span className="md:hidden">Book Slot</span>
                 <span className="hidden md:inline">Book Your Slot</span>
@@ -1040,7 +1040,7 @@ const MediaPage: React.FC = () => {
               </a>
               <a
                 href="mailto:connect@afroplay.org?subject=Onchain Africa - Partnership Inquiry"
-                className="mt-3 text-zinc-500 hover:text-afro-orange text-[10px] md:text-xs transition-colors inline-flex items-center gap-1"
+                className="mt-1 md:mt-3 min-h-[44px] md:min-h-0 md:py-1 w-full text-zinc-500 hover:text-afro-orange text-[11px] md:text-xs transition-colors inline-flex items-center justify-center gap-1"
               >
                 <Mail size={11} />
                 <span className="md:hidden">Email us</span>
@@ -1071,7 +1071,7 @@ const MediaPage: React.FC = () => {
                 Private Telegram for African Web3 founders — share resources, get alpha, connect with the community.
               </p>
 
-              <span className="w-full inline-flex items-center justify-center gap-1 md:gap-2 px-3 md:px-6 py-2.5 md:py-3.5 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-bold transition-colors group-hover:scale-[1.02] text-xs md:text-base">
+              <span className="w-full min-h-[44px] inline-flex items-center justify-center gap-1 md:gap-2 px-3 md:px-6 py-2.5 md:py-3.5 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-bold transition-colors group-hover:scale-[1.02] text-xs md:text-base">
                 <span className="md:hidden">Join Channel</span>
                 <span className="hidden md:inline">Join the Channel</span>
                 <ArrowRight size={14} />
