@@ -1,4 +1,3 @@
-successfully downloaded text file (SHA: 4e0792dd74ec430d4c06409428f73a2059950daa)
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Mic, PlayCircle, Play, Clock, ArrowRight, Mail, Quote, Send, Search, X, Youtube, ChevronDown } from 'lucide-react';
 import Contact from '../components/Contact';
@@ -1222,4 +1221,3 @@ const MediaPage: React.FC = () => {
 };
 
 export default MediaPage;
-
