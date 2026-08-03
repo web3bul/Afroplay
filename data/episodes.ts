@@ -14,6 +14,20 @@ export interface Episode {
 }
 
 export const episodes: Episode[] = [
+  // ── EP 32 — aired 2026-07-28 ────────────────────────────────────────────────
+  {
+    id: 32,
+    videoId: "hnOTJP5MUno",
+    title: "Spend Stablecoins Without Converting: @UgwuagbaBenard (@JustXpend_ai)",
+    guest: "Benard Ugwuagba",
+    guestHandle: "@UgwuagbaBenard",
+    guestImage: "https://pbs.twimg.com/profile_images/1976217453161050112/ttQTm_lM_400x400.jpg",
+    project: "JustXpend",
+    projectHandle: "@JustXpend_ai",
+    duration: "56:22",
+    tags: ["Payments", "Stablecoins", "Fintech"],
+    youtubeUrl: "https://www.youtube.com/watch?v=hnOTJP5MUno",
+  },
   // ── EP 31 — aired 2026-07-24 ────────────────────────────────────────────────
   {
     id: 31,
