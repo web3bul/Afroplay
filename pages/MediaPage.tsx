@@ -1,3 +1,4 @@
+successfully downloaded text file (SHA: 4e0792dd74ec430d4c06409428f73a2059950daa)
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Mic, PlayCircle, Play, Clock, ArrowRight, Mail, Quote, Send, Search, X, Youtube, ChevronDown } from 'lucide-react';
 import Contact from '../components/Contact';
@@ -239,6 +240,7 @@ const guestXUrls: Record<string, string> = {
 };
 
 const DEFAULT_VISIBLE = 8;
+const GUESTS_COLLAPSED = 12; // 2 rows on desktop (6 cols) before the Past Guests grid expands
 
 // Inline style for scroll-reveal: only animates transform + opacity.
 // Uses duration 0.45 s (≤ 0.5 s cap) and max 24 px reveal distance.
@@ -259,6 +261,7 @@ const revealStyle = (
 const MediaPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [showAll, setShowAll] = useState(false);
+  const [showAllGuests, setShowAllGuests] = useState(false);
   const [showMobileList, setShowMobileList] = useState(false);
   const [mobileCardIdx, setMobileCardIdx] = useState(0);
   const mobileCarouselRef = useRef<HTMLDivElement>(null);
@@ -871,7 +874,7 @@ const MediaPage: React.FC = () => {
           </p>
 
           <div ref={guestsRef} className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 max-w-4xl mx-auto mb-10">
-            {uniqueGuests.map((g, i) => {
+            {(showAllGuests ? uniqueGuests : uniqueGuests.slice(0, GUESTS_COLLAPSED)).map((g, i) => {
               const xUrl = guestXUrls[g.handle];
               const content = (
                 <>
@@ -901,6 +904,16 @@ const MediaPage: React.FC = () => {
               );
             })}
           </div>
+
+          {uniqueGuests.length > GUESTS_COLLAPSED && (
+            <button
+              type="button"
+              onClick={() => setShowAllGuests(prev => !prev)}
+              className="px-8 py-3 border border-white/20 hover:border-afro-orange/50 hover:bg-afro-orange/5 text-white rounded-lg font-semibold transition-colors"
+            >
+              {showAllGuests ? 'Show Fewer' : `Show All Guests (${uniqueGuests.length})`}
+            </button>
+          )}
         </div>
       </section>
 
@@ -1209,3 +1222,4 @@ const MediaPage: React.FC = () => {
 };
 
 export default MediaPage;
+
