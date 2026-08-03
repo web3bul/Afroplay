@@ -1026,7 +1026,7 @@ const MediaPage: React.FC = () => {
               </div>
               <p className="text-white font-bold text-sm md:text-lg mb-1 hidden md:block">Pick a time that works</p>
               <p className="text-zinc-400 text-xs md:text-sm mb-4 md:mb-6 flex-1 hidden md:block">
-                Book a 30-min slot with the host. Every request is reviewed before it&apos;s confirmed.
+                Book a 30-min slot with the host. Tell us what you&apos;re building when you book.
               </p>
               <a
                 href={CALENDLY_URL}
@@ -1164,7 +1164,7 @@ const MediaPage: React.FC = () => {
               },
               {
                 q: 'How do I get featured on Onchain Africa?',
-                a: 'Founders building Web3 projects in Africa can book a slot directly at calendly.com/benjaminudouso/30min — pick a time and tell us about your project. Every request is reviewed before it is confirmed. You can also join the AfroPlay Founders Circle on Telegram to connect directly with the host and community, or email connect@afroplay.org for partnership and media inquiries.',
+                a: 'Founders building Web3 projects in Africa can book a slot directly at calendly.com/benjaminudouso/30min — pick a time and tell us about your project when you book. You can also join the AfroPlay Founders Circle on Telegram to connect directly with the host and community, or email connect@afroplay.org for partnership and media inquiries.',
               },
               {
                 q: 'Where can I watch or listen to Onchain Africa?',
