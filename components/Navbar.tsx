@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Calendar } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+
+// Booking link for founders who want a livestream slot on Onchain Africa.
+// Only surfaced on the Media page — booking a show slot is meaningless in a Gaming context.
+const CALENDLY_URL = 'https://calendly.com/benjaminudouso/30min';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -137,6 +141,20 @@ const Navbar: React.FC = () => {
                 <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.11,77.11,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22c2.36-24.44-2-47.27-18.9-72.15ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5.18-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z" />
               </svg>
             </a>
+
+            {/* Book a slot — Media page only */}
+            {isMedia && (
+              <a
+                href={CALENDLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-2 border border-afro-orange/40 hover:border-afro-orange hover:bg-afro-orange/10 text-afro-orange rounded-full font-bold text-sm transition-colors flex items-center gap-1.5"
+              >
+                <Calendar size={14} />
+                Book a Slot
+              </a>
+            )}
+
             <a
               href="#contact"
               className="px-6 py-2 bg-gradient-to-r from-afro-orange to-red-600 rounded-full font-bold text-white hover:scale-105 transition-transform neon-box text-sm"
@@ -178,6 +196,20 @@ const Navbar: React.FC = () => {
               Media
             </Link>
           </div>
+
+          {/* Book a slot — Media page only, above the fold in the panel */}
+          {isMedia && (
+            <a
+              href={CALENDLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="min-h-[48px] mb-2 flex items-center justify-center gap-2 rounded-xl bg-afro-orange text-white text-base font-bold"
+            >
+              <Calendar size={16} />
+              Book a Slot
+            </a>
+          )}
 
           <div className="border-t border-white/10 mt-2 mb-2" />
 
