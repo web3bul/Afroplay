@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Mic, PlayCircle, Play, Clock, ArrowRight, Mail, Quote, Send, Search, X, Youtube, ChevronDown } from 'lucide-react';
+import { Mic, PlayCircle, Play, Clock, ArrowRight, Mail, Quote, Send, Search, X, Youtube, ChevronDown, Calendar } from 'lucide-react';
 import Contact from '../components/Contact';
 import PageMeta, { JsonLd } from '../components/PageMeta';
 import { mediaPageSchema, mediaFaqSchema } from '../lib/jsonld';
@@ -241,6 +241,11 @@ const guestXUrls: Record<string, string> = {
 const DEFAULT_VISIBLE = 8;
 const GUESTS_COLLAPSED = 12; // 2 rows on desktop (6 cols) before the Past Guests grid expands
 
+// Booking link for founders who want a livestream slot.
+// Calendly is set to require confirmation + intake questions, so this is an
+// application that picks a time — not an open grab of the host's calendar.
+const CALENDLY_URL = 'https://calendly.com/benjaminudouso/30min';
+
 // Inline style for scroll-reveal: only animates transform + opacity.
 // Uses duration 0.45 s (≤ 0.5 s cap) and max 24 px reveal distance.
 const revealStyle = (
@@ -455,10 +460,12 @@ const MediaPage: React.FC = () => {
                 See Episodes <PlayCircle size={20} />
               </a>
               <a
-                href="#featured"
+                href={CALENDLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-8 py-4 border border-white/20 hover:border-afro-orange/50 hover:bg-afro-orange/5 text-white rounded-lg font-semibold transition-colors flex items-center gap-2"
               >
-                Get Featured <ArrowRight size={20} />
+                Book Your Slot <Calendar size={20} />
               </a>
             </div>
           </div>
@@ -1015,17 +1022,29 @@ const MediaPage: React.FC = () => {
             {/* Primary — email application */}
             <div className="bg-afro-card border border-afro-orange/20 rounded-2xl p-4 md:p-8 shadow-[0_0_40px_rgba(255,107,0,0.06)] flex flex-col items-center text-center">
               <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-afro-orange/10 border border-afro-orange/20 flex items-center justify-center mb-3 md:mb-5">
-                <Mail size={20} className="text-afro-orange" />
+                <Calendar size={20} className="text-afro-orange" />
               </div>
-              <p className="text-white font-bold text-sm md:text-lg mb-1 hidden md:block">connect@afroplay.org</p>
-              <p className="text-zinc-400 text-xs md:text-sm mb-4 md:mb-6 flex-1 hidden md:block">Partnerships &amp; Media Inquiries</p>
+              <p className="text-white font-bold text-sm md:text-lg mb-1 hidden md:block">Pick a time that works</p>
+              <p className="text-zinc-400 text-xs md:text-sm mb-4 md:mb-6 flex-1 hidden md:block">
+                Book a 30-min slot with the host. Every request is reviewed before it&apos;s confirmed.
+              </p>
               <a
-                href="mailto:connect@afroplay.org?subject=Onchain Africa - Guest Application"
+                href={CALENDLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-1 md:gap-2 px-3 md:px-6 py-2.5 md:py-3.5 bg-afro-orange hover:bg-orange-600 rounded-lg text-white font-bold transition-colors neon-box text-xs md:text-base"
               >
-                <span className="md:hidden">Get Featured</span>
-                <span className="hidden md:inline">Apply to Get Featured</span>
+                <span className="md:hidden">Book Slot</span>
+                <span className="hidden md:inline">Book Your Slot</span>
                 <ArrowRight size={14} />
+              </a>
+              <a
+                href="mailto:connect@afroplay.org?subject=Onchain Africa - Partnership Inquiry"
+                className="mt-3 text-zinc-500 hover:text-afro-orange text-[10px] md:text-xs transition-colors inline-flex items-center gap-1"
+              >
+                <Mail size={11} />
+                <span className="md:hidden">Email us</span>
+                <span className="hidden md:inline">Or email us about partnerships</span>
               </a>
             </div>
 
@@ -1145,7 +1164,7 @@ const MediaPage: React.FC = () => {
               },
               {
                 q: 'How do I get featured on Onchain Africa?',
-                a: 'Founders building Web3 projects in Africa can apply by emailing connect@afroplay.org with the subject "Onchain Africa — Guest Application". You can also join the AfroPlay Founders Circle on Telegram to connect directly with the host and community.',
+                a: 'Founders building Web3 projects in Africa can book a slot directly at calendly.com/benjaminudouso/30min — pick a time and tell us about your project. Every request is reviewed before it is confirmed. You can also join the AfroPlay Founders Circle on Telegram to connect directly with the host and community, or email connect@afroplay.org for partnership and media inquiries.',
               },
               {
                 q: 'Where can I watch or listen to Onchain Africa?',
