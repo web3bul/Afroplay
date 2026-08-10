@@ -14,6 +14,20 @@ export interface Episode {
 }
 
 export const episodes: Episode[] = [
+  // ── EP 33 — aired 2026-08-04 ────────────────────────────────────────────────
+  {
+    id: 33,
+    videoId: "BUdp6u_O-3I",
+    title: "The Internet Has No Trust Layer: @DaviesLisbon (@CidentiaID)",
+    guest: "DAVID",
+    guestHandle: "@DaviesLisbon",
+    guestImage: "https://pbs.twimg.com/profile_images/1970926359712002048/4r9UENwq_400x400.jpg",
+    project: "Cidentia",
+    projectHandle: "@CidentiaID",
+    duration: "38:03",
+    tags: ["Infrastructure", "Security", "Web3"],
+    youtubeUrl: "https://www.youtube.com/watch?v=BUdp6u_O-3I",
+  },
   // ── EP 32 — aired 2026-07-28 ────────────────────────────────────────────────
   {
     id: 32,
