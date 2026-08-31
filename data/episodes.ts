@@ -14,7 +14,21 @@ export interface Episode {
 }
 
 export const episodes: Episode[] = [
-  // ── EP 33 — aired 2026-08-04 ────────────────────────────────────────────────
+  // -- EP 34 -- aired 2026-08-27 --
+  {
+    id: 34,
+    videoId: "rO7melurstw",
+    title: "Onchain Africa: Live with @koxy_Dev ( @choppaddi )",
+    guest: "KOXY",
+    guestHandle: "@koxy_Dev",
+    guestImage: "https://pbs.twimg.com/profile_images/2010086535043944448/xvrqeBas_400x400.jpg",
+    project: "Choppaddi",
+    projectHandle: "@choppaddi",
+    duration: "1:19:49",
+    tags: ["Payments", "Marketplace", "RWA"],
+    youtubeUrl: "https://www.youtube.com/watch?v=rO7melurstw",
+  },
+  // -- EP 33 -- aired 2026-08-04 --
   {
     id: 33,
     videoId: "BUdp6u_O-3I",
@@ -28,7 +42,7 @@ export const episodes: Episode[] = [
     tags: ["Infrastructure", "Security", "Web3"],
     youtubeUrl: "https://www.youtube.com/watch?v=BUdp6u_O-3I",
   },
-  // ── EP 32 — aired 2026-07-28 ────────────────────────────────────────────────
+  // -- EP 32 -- aired 2026-07-28 --
   {
     id: 32,
     videoId: "hnOTJP5MUno",
@@ -42,7 +56,7 @@ export const episodes: Episode[] = [
     tags: ["Payments", "Stablecoins", "Fintech"],
     youtubeUrl: "https://www.youtube.com/watch?v=hnOTJP5MUno",
   },
-  // ── EP 31 — aired 2026-07-24 ────────────────────────────────────────────────
+  // -- EP 31 -- aired 2026-07-24 --
   {
     id: 31,
     videoId: "8FZa0fVSw3o",
@@ -56,7 +70,7 @@ export const episodes: Episode[] = [
     tags: ["DeFi", "Yield", "Savings"],
     youtubeUrl: "https://www.youtube.com/watch?v=8FZa0fVSw3o",
   },
-  // ── EP 30 — aired 2026-07-23 ────────────────────────────────────────────────
+  // -- EP 30 -- aired 2026-07-23 --
   {
     id: 30,
     videoId: "oAJhBOzjmPg",
@@ -70,7 +84,7 @@ export const episodes: Episode[] = [
     tags: ["Grants", "Developer", "Web3"],
     youtubeUrl: "https://www.youtube.com/watch?v=oAJhBOzjmPg",
   },
-  // ── EP 29 — aired 2026-07-19 ────────────────────────────────────────────────
+  // -- EP 29 -- aired 2026-07-19 --
   {
     id: 29,
     videoId: "dkpmMX4r45U",
@@ -84,7 +98,7 @@ export const episodes: Episode[] = [
     tags: ["Infrastructure", "Multichain", "Web3"],
     youtubeUrl: "https://www.youtube.com/watch?v=dkpmMX4r45U",
   },
-  // ── EP 28 — aired 2026-07-16 ────────────────────────────────────────────────
+  // -- EP 28 -- aired 2026-07-16 --
   {
     id: 28,
     videoId: "wcCVFAFQJwg",
@@ -98,7 +112,7 @@ export const episodes: Episode[] = [
     tags: ["Social", "Streaming", "Web3"],
     youtubeUrl: "https://www.youtube.com/watch?v=wcCVFAFQJwg",
   },
-  // ── EP 27 — aired 2026-07-14 ────────────────────────────────────────────────
+  // -- EP 27 -- aired 2026-07-14 --
   {
     id: 27,
     videoId: "Mm2sS16UQHs",
@@ -112,7 +126,7 @@ export const episodes: Episode[] = [
     tags: ["Trading", "RWA", "DeFi"],
     youtubeUrl: "https://www.youtube.com/watch?v=Mm2sS16UQHs",
   },
-  // ── EP 26 — aired 2026-07-07 ────────────────────────────────────────────────
+  // -- EP 26 -- aired 2026-07-07 --
   {
     id: 26,
     videoId: "kloyjJjplMc",
@@ -126,7 +140,7 @@ export const episodes: Episode[] = [
     tags: ["Payments", "Fintech", "Crypto"],
     youtubeUrl: "https://www.youtube.com/watch?v=kloyjJjplMc",
   },
-  // ── EP 25 — aired 2026-07-02 ────────────────────────────────────────────────
+  // -- EP 25 -- aired 2026-07-02 --
   {
     id: 25,
     videoId: "i76mBna6DCY",
