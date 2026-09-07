@@ -14,6 +14,20 @@ export interface Episode {
 }
 
 export const episodes: Episode[] = [
+  // -- EP 35 -- aired 2026-09-04 --
+  {
+    id: 35,
+    videoId: "XfddplFTCJ4",
+    title: "Onchain Africa: Live with @danieldzansi96 building @zazapayofficial",
+    guest: "Daniel",
+    guestHandle: "@danieldzansi96",
+    guestImage: "https://pbs.twimg.com/profile_images/2074984273396826112/86t4c9Po_400x400.jpg",
+    project: "ZazaPay",
+    projectHandle: "@zazapayofficial",
+    duration: "51:18",
+    tags: ["Payments", "Fintech", "Web3"],
+    youtubeUrl: "https://www.youtube.com/watch?v=XfddplFTCJ4",
+  },
   // -- EP 34 -- aired 2026-08-27 --
   {
     id: 34,
