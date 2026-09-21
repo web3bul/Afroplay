@@ -14,6 +14,48 @@ export interface Episode {
 }
 
 export const episodes: Episode[] = [
+  // -- EP 38 -- aired 2026-09-19 --
+  {
+    id: 38,
+    videoId: "45wm13kt6lc",
+    title: "He (@_ChrisOketch) Left Base to Fix African Stablecoin Payments with @minisendapp",
+    guest: "Chris Oketch",
+    guestHandle: "@_ChrisOketch",
+    guestImage: "https://pbs.twimg.com/profile_images/2062038913871499264/_-tCXfRs_400x400.jpg",
+    project: "Minisend",
+    projectHandle: "@minisendapp",
+    duration: "1:10:13",
+    tags: ["Payments", "Stablecoins", "Fintech"],
+    youtubeUrl: "https://www.youtube.com/watch?v=45wm13kt6lc",
+  },
+  // -- EP 37 -- aired 2026-09-11 --
+  {
+    id: 37,
+    videoId: "LOxse4rvKUE",
+    title: "Launch a Crypto Exchange in Weeks, Not Years | @Abala_kparobo ( @FinnaHQ )",
+    guest: "Abala Kparobo",
+    guestHandle: "@Abala_kparobo",
+    guestImage: "https://pbs.twimg.com/profile_images/1814457951458906112/MKY32yLn_400x400.jpg",
+    project: "Finna",
+    projectHandle: "@FinnaHQ",
+    duration: "1:04:17",
+    tags: ["Infrastructure", "Trading", "DeFi"],
+    youtubeUrl: "https://www.youtube.com/watch?v=LOxse4rvKUE",
+  },
+  // -- EP 36 -- aired 2026-09-09 --
+  {
+    id: 36,
+    videoId: "Xrvzd9Zd8AA",
+    title: "Onchain Africa: Live with Nas Finance",
+    guest: "Almarat Arnu Ngutulu",
+    guestHandle: "@arnu_almarat",
+    guestImage: "https://pbs.twimg.com/profile_images/1718565771075375105/PwIiO5T-_400x400.jpg",
+    project: "Nas Financials",
+    projectHandle: "",
+    duration: "34:08",
+    tags: ["Payments", "Remittance", "Africa"],
+    youtubeUrl: "https://www.youtube.com/watch?v=Xrvzd9Zd8AA",
+  },
   // -- EP 35 -- aired 2026-09-04 --
   {
     id: 35,
@@ -465,7 +507,7 @@ export const episodes: Episode[] = [
     projectHandle: "",
     duration: "1:14:39",
     tags: ["Careers", "Talent", "Africa"],
-    youtubeUrl: "https://www.youtube.com/watch?v=WTJQozH3zgE"
+    youtubeUrl: "https://www.youtube.com/watch?v=WTJQozH3zgE",
   },
   {
     id: 1,
