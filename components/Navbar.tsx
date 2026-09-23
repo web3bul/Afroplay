@@ -55,6 +55,8 @@ const Navbar: React.FC = () => {
   // Active pill — same orange gradient for both Gaming and Media; no cyan anywhere.
   const activePillClass = 'bg-afro-orange text-white shadow-[0_0_12px_rgba(255,107,0,0.4)]';
   const inactivePillClass = 'text-gray-400 hover:text-white';
+  // Gaming guild is paused: its nav entries are shown but disabled (no link).
+  const pausedPillClass = 'text-gray-600 cursor-not-allowed';
 
   return (
     <nav
@@ -76,17 +78,16 @@ const Navbar: React.FC = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-6">
-          {/* Gaming / Media pill switcher */}
+          {/* Gaming / Media pill switcher — Gaming is paused (disabled span, not a link) */}
           {!isHome && (
             <div className="flex items-center gap-1 bg-white/5 border border-white/10 rounded-full p-1">
-              <Link
-                to="/gaming"
-                className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
-                  isGaming ? activePillClass : inactivePillClass
-                }`}
+              <span
+                title="Gaming Guild currently paused"
+                aria-disabled="true"
+                className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${pausedPillClass}`}
               >
                 Gaming
-              </Link>
+              </span>
               <Link
                 to="/media"
                 className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
@@ -100,12 +101,13 @@ const Navbar: React.FC = () => {
 
           {isHome && (
             <>
-              <Link
-                to="/gaming"
-                className="text-gray-300 hover:text-afro-orange transition-colors font-medium text-sm uppercase tracking-widest"
+              <span
+                title="Gaming Guild currently paused"
+                aria-disabled="true"
+                className="text-gray-600 cursor-not-allowed font-medium text-sm uppercase tracking-widest"
               >
                 Gaming
-              </Link>
+              </span>
               <Link
                 to="/media"
                 className="text-gray-300 hover:text-afro-orange transition-colors font-medium text-sm uppercase tracking-widest"
@@ -177,16 +179,15 @@ const Navbar: React.FC = () => {
       {/* Mobile Menu — fixed full-screen panel, sits below navbar (z-[100]) */}
       {isMobileMenuOpen && (
         <div className="md:hidden fixed inset-0 z-[99] bg-[#0F0502] overflow-y-auto pt-24 px-6 pb-10 flex flex-col gap-1">
-          {/* Gaming / Media toggle — prominent at top */}
+          {/* Gaming / Media toggle — Gaming paused (disabled), Media active */}
           <div className="flex gap-3 mb-4">
-            <Link
-              to="/gaming"
-              className={`flex-1 text-center min-h-[48px] flex items-center justify-center rounded-xl text-sm font-bold uppercase tracking-wider transition-all ${
-                isGaming ? 'bg-afro-orange text-white' : 'bg-white/5 border border-white/10 text-gray-400'
-              }`}
+            <span
+              aria-disabled="true"
+              className="flex-1 text-center min-h-[48px] flex flex-col items-center justify-center rounded-xl text-sm font-bold uppercase tracking-wider bg-white/5 border border-white/10 text-gray-600 cursor-not-allowed"
             >
               Gaming
-            </Link>
+              <span className="text-[9px] font-semibold tracking-widest text-gray-500 normal-case">Paused</span>
+            </span>
             <Link
               to="/media"
               className={`flex-1 text-center min-h-[48px] flex items-center justify-center rounded-xl text-sm font-bold uppercase tracking-wider transition-all ${
