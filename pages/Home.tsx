@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Gamepad2, Mic } from 'lucide-react';
+import { ArrowRight, Gamepad2, Mic, PauseCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
@@ -27,36 +27,56 @@ const Home: React.FC = () => {
             </span>
           </h1>
           <p className="hidden md:block text-gray-400 max-w-md mx-auto text-base leading-relaxed anim-fade-in anim-d3">
-            AfroPlay unites Africa's most passionate Web3 gamers with the media platform telling their stories. Choose your path.
+            The home of Onchain Africa — live Web3 interviews with the builders shaping the continent. The Gaming Guild is on a short break.
           </p>
         </div>
 
         {/* Two path cards — 2-column on all sizes */}
         <div className="grid grid-cols-2 gap-3 md:gap-6 w-full max-w-3xl">
-          {/* Gaming */}
-          <Link
-            to="/gaming"
-            className="group relative bg-afro-card border border-white/10 rounded-2xl md:rounded-3xl p-4 md:p-10 overflow-hidden hover:border-afro-orange/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(255,107,0,0.15)] anim-slide-up anim-d4"
+          {/* Gaming — PAUSED. Rendered as a non-interactive, dimmed card with a
+              "Gaming Guild Currently Paused" overlay. Not a <Link>, so there is
+              no way through to /gaming from here. Swap this block back to the
+              original <Link to="/gaming"> to re-open the guild. */}
+          <div
+            aria-disabled="true"
+            title="Gaming Guild currently paused"
+            className="group relative bg-afro-card border border-white/10 rounded-2xl md:rounded-3xl p-4 md:p-10 overflow-hidden cursor-not-allowed select-none anim-slide-up anim-d4"
           >
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-afro-orange to-yellow-500" />
-            <div className="absolute -bottom-10 -right-10 w-52 h-52 bg-afro-orange/5 rounded-full blur-[60px] group-hover:bg-afro-orange/10 transition-colors duration-500" />
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-white/25 to-white/5" />
 
-            <Gamepad2 className="w-8 h-8 md:w-12 md:h-12 text-afro-orange mb-2 md:mb-6" />
-            <h2 className="text-base md:text-3xl font-heading text-white mb-1 md:mb-3">Gaming</h2>
-            <p className="text-gray-400 mb-3 md:mb-8 leading-tight md:leading-relaxed text-xs md:text-sm line-clamp-2">
-              Africa's most passionate Web3 gaming community. 60M+ gamers ready to champion your game.
-            </p>
-            <div className="hidden md:flex flex-wrap gap-2 mb-8">
-              {['Web3 Gaming', 'Community', 'Onboarding', 'Partnerships'].map(tag => (
-                <span key={tag} className="text-xs text-afro-orange bg-afro-orange/10 border border-afro-orange/20 px-3 py-1 rounded-full">
-                  {tag}
-                </span>
-              ))}
+            {/* Original card content, dimmed */}
+            <div className="opacity-25 grayscale pointer-events-none">
+              <Gamepad2 className="w-8 h-8 md:w-12 md:h-12 text-afro-orange mb-2 md:mb-6" />
+              <h2 className="text-base md:text-3xl font-heading text-white mb-1 md:mb-3">Gaming</h2>
+              <p className="text-gray-400 mb-3 md:mb-8 leading-tight md:leading-relaxed text-xs md:text-sm line-clamp-2">
+                Africa's most passionate Web3 gaming community. 60M+ gamers ready to champion your game.
+              </p>
+              <div className="hidden md:flex flex-wrap gap-2 mb-8">
+                {['Web3 Gaming', 'Community', 'Onboarding', 'Partnerships'].map(tag => (
+                  <span key={tag} className="text-xs text-afro-orange bg-afro-orange/10 border border-afro-orange/20 px-3 py-1 rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <span className="inline-flex items-center gap-1 md:gap-2 text-afro-orange font-bold text-[10px] md:text-sm uppercase tracking-wider">
+                Enter the Arena <ArrowRight size={12} />
+              </span>
             </div>
-            <span className="inline-flex items-center gap-1 md:gap-2 text-afro-orange font-bold text-[10px] md:text-sm uppercase tracking-wider group-hover:gap-3 md:group-hover:gap-4 transition-all duration-200">
-              Enter the Arena <ArrowRight size={12} />
-            </span>
-          </Link>
+
+            {/* Paused overlay */}
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 md:gap-3 px-3 text-center bg-black/60 backdrop-blur-[2px]">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-afro-orange/40 bg-afro-orange/10 px-2.5 py-1 md:px-4 md:py-1.5">
+                <PauseCircle size={13} className="text-afro-orange" />
+                <span className="text-afro-orange font-bold uppercase tracking-widest text-[9px] md:text-xs">Paused</span>
+              </span>
+              <h3 className="font-heading text-white text-sm md:text-2xl leading-tight">
+                Gaming Guild<br />Currently Paused
+              </h3>
+              <p className="hidden md:block text-gray-400 text-xs md:text-sm max-w-[15rem] leading-relaxed">
+                We're regrouping. Onchain Africa is live — head there in the meantime.
+              </p>
+            </div>
+          </div>
 
           {/* Media */}
           <Link
