@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Music } from 'lucide-react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
-import GamingPage from './pages/GamingPage';
 import MediaPage from './pages/MediaPage';
 import BrandRedirect from './pages/BrandRedirect';
 
@@ -62,7 +61,10 @@ function AppContent() {
       )}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/gaming" element={<GamingPage />} />
+        {/* Gaming guild paused — no public access. Any hit to /gaming (old links,
+            bookmarks, the muted nav item) is bounced back to the landing page,
+            where the paused state is shown. Restore the GamingPage route to reopen. */}
+        <Route path="/gaming" element={<Navigate to="/" replace />} />
         <Route path="/media" element={<MediaPage />} />
         <Route path="/brand" element={<BrandRedirect />} />
       </Routes>
