@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 // Booking link for founders who want a livestream slot on Onchain Africa.
 // Only surfaced on the Media page — booking a show slot is meaningless in a Gaming context.
-const CALENDLY_URL = 'https://calendly.com/benjaminudouso/30min';
+const CALENDLY_URL = 'https://calendly.com/benjaminudouso/60min';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
