@@ -244,7 +244,7 @@ const GUESTS_COLLAPSED = 12; // 2 rows on desktop (6 cols) before the Past Guest
 // Booking link for founders who want a livestream slot.
 // Calendly is set to require confirmation + intake questions, so this is an
 // application that picks a time — not an open grab of the host's calendar.
-const CALENDLY_URL = 'https://calendly.com/benjaminudouso/30min';
+const CALENDLY_URL = 'https://calendly.com/benjaminudouso/60min';
 
 // Inline style for scroll-reveal: only animates transform + opacity.
 // Uses duration 0.45 s (≤ 0.5 s cap) and max 24 px reveal distance.
@@ -1164,7 +1164,7 @@ const MediaPage: React.FC = () => {
               },
               {
                 q: 'How do I get featured on Onchain Africa?',
-                a: 'Founders building Web3 projects in Africa can book a slot directly at calendly.com/benjaminudouso/30min — pick a time and tell us about your project when you book. You can also join the AfroPlay Founders Circle on Telegram to connect directly with the host and community, or email connect@afroplay.org for partnership and media inquiries.',
+                a: 'Founders building Web3 projects in Africa can book a slot directly at calendly.com/benjaminudouso/60min — pick a time and tell us about your project when you book. You can also join the AfroPlay Founders Circle on Telegram to connect directly with the host and community, or email connect@afroplay.org for partnership and media inquiries.',
               },
               {
                 q: 'Where can I watch or listen to Onchain Africa?',
