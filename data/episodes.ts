@@ -14,6 +14,20 @@ export interface Episode {
 }
 
 export const episodes: Episode[] = [
+  // -- EP 39 -- aired 2026-10-10 --
+  {
+    id: 39,
+    videoId: "rEmAtflPQPI",
+    title: "Why @PawasaveHQ Chose cNGN Over USDC | Onchain Africa",
+    guest: "Perry Paschal",
+    guestHandle: "@perry_potompo",
+    guestImage: "https://pbs.twimg.com/profile_images/1973841998739091456/7X6BHXYw_400x400.jpg",
+    project: "Pawasave",
+    projectHandle: "@PawasaveHQ",
+    duration: "1:04:02",
+    tags: ["DeFi", "Stablecoins", "Fintech"],
+    youtubeUrl: "https://www.youtube.com/watch?v=rEmAtflPQPI",
+  },
   // -- EP 38 -- aired 2026-09-19 --
   {
     id: 38,
