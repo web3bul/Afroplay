@@ -14,7 +14,7 @@ export interface Episode {
 }
 
 export const episodes: Episode[] = [
-  // -- EP 39 -- aired 2026-10-10 -- (published 2026-10-12)
+  // -- EP 39 -- aired 2026-10-10 -- (published 2026-10-12, live)
   {
     id: 39,
     videoId: "rEmAtflPQPI",
