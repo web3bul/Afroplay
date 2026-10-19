@@ -14,6 +14,20 @@ export interface Episode {
 }
 
 export const episodes: Episode[] = [
+  // -- EP 40 -- aired 2026-10-13 --
+  {
+    id: 40,
+    videoId: "KnWXc-UVqwI",
+    title: "Tap Your Phone. Pay in USDC. | @bejaay24 (@taprails)",
+    guest: "Bolaji",
+    guestHandle: "@bejaay24",
+    guestImage: "https://pbs.twimg.com/profile_images/1983506096502235136/NTNrNNY__400x400.jpg",
+    project: "Taprails",
+    projectHandle: "@taprails",
+    duration: "46:30",
+    tags: ["Payments", "Stablecoins", "Fintech"],
+    youtubeUrl: "https://www.youtube.com/watch?v=KnWXc-UVqwI",
+  },
   // -- EP 39 -- aired 2026-10-10 -- (published 2026-10-12)
   {
     id: 39,
