@@ -11,6 +11,9 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
 # Anthropic: training crawler, search indexing, user-initiated fetches
 User-agent: ClaudeBot
 Allow: /
