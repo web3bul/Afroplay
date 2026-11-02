@@ -5,6 +5,7 @@ import PageMeta, { JsonLd } from '../components/PageMeta';
 import { mediaPageSchema, mediaFaqSchema } from '../lib/jsonld';
 import { useInView } from '../hooks/useInView';
 import { episodes, Episode } from '../data/episodes';
+import { airedEpisodes, totalEpisodes, totalHours } from '../lib/episodes';
 
 // ─── Brand icon components ────────────────────────────────────────────────────
 
@@ -188,16 +189,9 @@ const AnimatedNumber: React.FC<{ value: string; start: boolean; duration?: numbe
 
 // ─── Derived data ─────────────────────────────────────────────────────────────
 
-// Separate aired from upcoming so stats/hero never count unaired episodes.
-const airedEpisodes   = episodes.filter(ep => ep.status !== 'upcoming');
+// Aired-only stats live in lib/episodes so the homepage, sitemap and this page
+// all compute the same numbers; upcoming episodes are never counted.
 const upcomingEpisode = episodes.find(ep => ep.status === 'upcoming') ?? null;
-
-const totalEpisodes = airedEpisodes.length;
-const totalMinutes = airedEpisodes.reduce((sum, ep) => {
-  const parts = ep.duration.split(':').map(Number);
-  return sum + (parts.length === 3 ? parts[0] * 60 + parts[1] : parts[0]);
-}, 0);
-const totalHours = Math.floor(totalMinutes / 60);
 
 // Two stats only — episodes and hours (founders ≈ episodes numerically, so removed).
 const stats = [

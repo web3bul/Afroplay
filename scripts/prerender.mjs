@@ -25,7 +25,7 @@ await build({
   build: { ssr: 'entry-server.tsx', outDir: ssrOut, emptyOutDir: true },
 });
 
-const { render, getPrerenderRoutes } = await import(
+const { render, getPrerenderRoutes, buildSitemapXml } = await import(
   pathToFileURL(path.join(ssrOut, 'entry-server.js')).href
 );
 
@@ -37,8 +37,9 @@ if (!template.includes('<div id="root"></div>')) throw new Error('index.html is 
 // Leading run of hoistable tags React put before the first real element.
 const PREAMBLE_RE = /^(?:\s*(?:<title>[\s\S]*?<\/title>|<meta\b[^>]*>|<link\b[^>]*>))+/;
 
+const routes = getPrerenderRoutes();
 const written = [];
-for (const route of getPrerenderRoutes()) {
+for (const route of routes) {
   const html = render(route.path);
   const preamble = (html.match(PREAMBLE_RE) || [''])[0];
   const body = html.slice(preamble.length);
@@ -57,8 +58,14 @@ for (const route of getPrerenderRoutes()) {
   written.push(`${route.file}  (${route.path}, ${(page.length / 1024).toFixed(1)} KB)`);
 }
 
+// sitemap.xml is generated from the same route list, so it can only ever list
+// pages that were actually prerendered (never redirects or the 404 page).
+const sitemap = buildSitemapXml(routes);
+writeFileSync(path.join(dist, 'sitemap.xml'), sitemap);
+written.push(`sitemap.xml  (${(sitemap.match(/<url>/g) || []).length} URLs)`);
+
 // Best-effort cleanup: a lingering file handle on Windows can make this fail
 // even though the build itself succeeded, so it never fails the build.
 try { rmSync(ssrOut, { recursive: true, force: true }); } catch { /* ignore */ }
 
-console.log(`Prerendered ${written.length} routes:\n  ${written.join('\n  ')}`);
+console.log(`Prerendered ${routes.length} routes:\n  ${written.join('\n  ')}`);

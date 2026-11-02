@@ -6,7 +6,7 @@ import { StaticRouter } from 'react-router';
 import { HelmetProvider } from 'react-helmet-async';
 import { AppContent } from './App';
 
-export { getPrerenderRoutes } from './lib/routes';
+export { getPrerenderRoutes, buildSitemapXml } from './lib/routes';
 
 export function render(url: string): string {
   return renderToString(
