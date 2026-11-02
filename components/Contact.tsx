@@ -56,6 +56,9 @@ const Contact: React.FC = () => {
           <img
             src="/logo.png"
             alt="AfroPlay Logo"
+            width={96}
+            height={96}
+            loading="lazy"
             className="h-24 w-auto object-contain hover:scale-105 transition-transform"
           />
         </div>

@@ -138,6 +138,9 @@ const GuestAvatar: React.FC<{
     <div className="relative flex-shrink-0">
       <img
         src={image}
+        width={96}
+        height={96}
+        decoding="async"
         alt={name}
         loading="lazy"
         className={`${className} rounded-full object-cover border border-afro-orange/20 group-hover:border-afro-orange/50 group-hover:scale-105 ${showGrayscale ? 'grayscale group-hover:grayscale-0' : ''}`}
@@ -354,6 +357,10 @@ const MediaPage: React.FC = () => {
         >
           <img
             src={`https://img.youtube.com/vi/${latestEpisode.videoId}/hqdefault.jpg`}
+            width={480}
+            height={360}
+            loading="lazy"
+            decoding="async"
             alt={latestEpisode.title}
             className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg object-cover flex-shrink-0"
           />
@@ -426,6 +433,8 @@ const MediaPage: React.FC = () => {
             <div className="flex flex-wrap items-center gap-4 anim-fade-in anim-d4">
               <img
                 src="/team/web3bull.jpg"
+                width={56}
+                height={56}
                 alt="Web3bull, Founder and Host of Onchain Africa"
                 fetchPriority="high"
                 className="w-14 h-14 rounded-full border-2 border-afro-orange object-cover bg-gray-800 shadow-[0_0_20px_rgba(255,107,0,0.3)]"
@@ -484,6 +493,10 @@ const MediaPage: React.FC = () => {
                 <div className="aspect-video relative overflow-hidden">
                   <img
                     src={`https://img.youtube.com/vi/${latestEpisode.videoId}/maxresdefault.jpg`}
+                    width={1280}
+                    height={720}
+                    fetchPriority="high"
+                    decoding="async"
                     onError={handleThumbnailError}
                     alt={latestEpisode.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -671,6 +684,8 @@ const MediaPage: React.FC = () => {
                           <div className="aspect-video bg-black relative overflow-hidden">
                             <img
                               src={`https://img.youtube.com/vi/${ep.videoId}/maxresdefault.jpg`}
+                              width={1280}
+                              height={720}
                               onError={handleThumbnailError}
                               alt={ep.title}
                               loading="lazy"
@@ -738,6 +753,8 @@ const MediaPage: React.FC = () => {
                           <div className="w-24 flex-shrink-0 aspect-video rounded-lg overflow-hidden bg-black relative">
                             <img
                               src={`https://img.youtube.com/vi/${ep.videoId}/hqdefault.jpg`}
+                              width={480}
+                              height={360}
                               onError={handleThumbnailError}
                               alt={ep.title}
                               loading="lazy"
@@ -781,6 +798,8 @@ const MediaPage: React.FC = () => {
                       <div className="aspect-video bg-black relative overflow-hidden">
                         <img
                           src={`https://img.youtube.com/vi/${ep.videoId}/maxresdefault.jpg`}
+                          width={1280}
+                          height={720}
                           onError={handleThumbnailError}
                           alt={ep.title}
                           loading="lazy"
@@ -852,7 +871,7 @@ const MediaPage: React.FC = () => {
               >
                 {/* Static glow — no animated box-shadow */}
                 <div className="w-28 h-28 mx-auto rounded-full overflow-hidden border-2 border-afro-orange shadow-[0_0_25px_rgba(255,107,0,0.25)] mb-6">
-                  <img src={host.avatarUrl} alt={host.name} className="w-full h-full object-cover bg-gray-800" />
+                  <img src={host.avatarUrl} alt={host.name} width={112} height={112} loading="lazy" decoding="async" className="w-full h-full object-cover bg-gray-800" />
                 </div>
                 <h3 className="text-white font-heading text-2xl mb-1">{host.name}</h3>
                 <p className="text-afro-orange text-xs font-bold uppercase tracking-widest mb-5">{host.role}</p>

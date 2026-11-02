@@ -34,3 +34,6 @@ dist-ssr
 *.sln
 *.sw?
 .ssr-tmp
+
+# Backups written by scripts/localize-avatars.mjs
+.backups
