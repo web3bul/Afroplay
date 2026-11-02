@@ -165,7 +165,10 @@ const AnimatedNumber: React.FC<{ value: string; start: boolean; duration?: numbe
   const match = value.match(/^(\d+)(.*)$/);
   const target = match ? parseInt(match[1], 10) : 0;
   const suffix = match ? match[2] : value;
-  const [display, setDisplay] = useState(0);
+  // Start at the real value so the prerendered HTML (and no-JS visitors,
+  // crawlers, screen readers) see "42", not "0". The count-up from 0 only runs
+  // once `start` flips, by which point the stat band has faded in.
+  const [display, setDisplay] = useState(target);
 
   useEffect(() => {
     if (!start) return;

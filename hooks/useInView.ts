@@ -8,17 +8,20 @@ import { useEffect, useRef, useState } from 'react';
 export function useInView(threshold = 0.05) {
   const ref = useRef<HTMLDivElement>(null);
 
-  // Initialise to true on mobile / reduced-motion so the first render is
-  // already visible — no observer needed, no blank-frame risk.
-  const [inView, setInView] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    if (window.innerWidth < 768) return true;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return true;
-    return false;
-  });
+  // Always start false so the first client render matches the prerendered HTML
+  // (the server has no window). Deciding during render instead would make the
+  // client's initial state differ from the server's, and React does not patch
+  // mismatched inline styles on hydration, so sections would stay at opacity 0.
+  const [inView, setInView] = useState(false);
 
   useEffect(() => {
     if (inView) return; // already revealed — skip observer
+
+    // Mobile / reduced-motion: reveal immediately, no observer needed.
+    if (window.innerWidth < 768 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setInView(true);
+      return;
+    }
 
     const el = ref.current;
     if (!el) return;

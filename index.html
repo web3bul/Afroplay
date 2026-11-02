@@ -13,16 +13,20 @@
       gtag('config', 'G-38NFBYFGWS');
     </script>
 
-    <!-- Default title/description (overridden per-page by react-helmet-async) -->
-    <title>AfroPlay — Africa's Web3 Gaming &amp; Media Platform</title>
-    <meta name="description" content="AfroPlay connects Web3 games with Africa's 60M+ gamers through community, content, and partnerships. Home of the Onchain Africa interview series." />
-    <meta name="robots" content="index, follow" />
-
     <!-- Favicon & icons -->
     <link rel="icon" type="image/png" href="/logo.png" />
     <link rel="apple-touch-icon" href="/logo.png" />
 
-    <!-- Default Open Graph (overridden per-page) -->
+    <!--
+      Default head tags, used only by the dev server. At build time
+      scripts/prerender.mjs replaces everything between these markers with each
+      page's own title, description, canonical, Open Graph and Twitter tags.
+    -->
+    <!--app-head-->
+    <title>AfroPlay — Africa's Web3 Gaming &amp; Media Platform</title>
+    <meta name="description" content="AfroPlay connects Web3 games with Africa's 60M+ gamers through community, content, and partnerships. Home of the Onchain Africa interview series." />
+    <meta name="robots" content="index, follow" />
+
     <meta property="og:site_name" content="AfroPlay" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="AfroPlay — Africa's Web3 Gaming &amp; Media Platform" />
@@ -38,11 +42,16 @@
     <meta name="twitter:site" content="@AfroPlayHQ" />
     <meta name="twitter:image" content="https://afroplay.org/og/default.png" />
     <meta name="twitter:image:alt" content="Onchain Africa by AfroPlay: live interviews with African Web3 founders and builders" />
+    <!--/app-head-->
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Russo+One&display=swap" rel="stylesheet">
 
     <!-- Tailwind is compiled at build time (tailwind.config.js + index.css). -->
+
+    <!-- Scroll-reveal sections render at opacity 0 until JS reveals them; without
+         JS (some crawlers, previews, users), show them immediately. -->
+    <noscript><style>[style*="opacity:0"]{opacity:1!important;transform:none!important}</style></noscript>
 
     <!-- Static site-wide JSON-LD (visible to all crawlers before JS runs) -->
     <script type="application/ld+json">

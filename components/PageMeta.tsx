@@ -4,7 +4,10 @@ import { Helmet } from 'react-helmet-async';
 interface PageMetaProps {
   title: string;
   description: string;
-  canonical: string;
+  /** Absolute, self-referencing URL on https://afroplay.org. Omit only on the 404 page. */
+  canonical?: string;
+  /** Set on pages that must not be indexed (the 404 page). */
+  noindex?: boolean;
   /** Absolute URL to a 1200×630 PNG/JPG OG image (X, Facebook and LinkedIn
    *  don't render SVG). Defaults to /og/default.png. */
   ogImage?: string;
@@ -28,18 +31,19 @@ const PageMeta: React.FC<PageMetaProps> = ({
   ogImage = DEFAULT_OG_IMAGE,
   ogImageAlt = DEFAULT_OG_IMAGE_ALT,
   ogType = 'website',
+  noindex = false,
 }) => (
   <Helmet>
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    {canonical && <link rel="canonical" href={canonical} />}
 
     {/* Open Graph */}
     <meta property="og:site_name" content="AfroPlay" />
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
+    {canonical && <meta property="og:url" content={canonical} />}
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -54,20 +58,21 @@ const PageMeta: React.FC<PageMetaProps> = ({
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content={ogImageAlt} />
 
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
   </Helmet>
 );
 
 export default PageMeta;
 
 /**
- * Injects a <script type="application/ld+json"> block via Helmet.
- * Accepts any schema.org object or @graph array.
+ * Renders a <script type="application/ld+json"> block inline, so it is part of
+ * the prerendered HTML (crawlers that don't run JS see it). Rendered with
+ * dangerouslySetInnerHTML because React would otherwise HTML-escape the JSON;
+ * `<` is escaped as < so a value can never close the script tag early.
  */
 export const JsonLd: React.FC<{ data: object }> = ({ data }) => (
-  <Helmet>
-    <script type="application/ld+json">
-      {JSON.stringify(data)}
-    </script>
-  </Helmet>
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }}
+  />
 );

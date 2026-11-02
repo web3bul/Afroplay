@@ -5,13 +5,16 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import MediaPage from './pages/MediaPage';
 import BrandRedirect from './pages/BrandRedirect';
+import NotFound from './pages/NotFound';
 
-// Inner component so it can call useLocation (must be inside BrowserRouter).
-function AppContent() {
+// Route tree shared by the browser (BrowserRouter, index.tsx) and the build-time
+// prerender (StaticRouter, entry-server.tsx). Must be rendered inside a router.
+export function AppContent() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isAudioOn, setIsAudioOn] = useState(false);
   const location = useLocation();
-  const isMedia = location.pathname === '/media';
+  // /media and every /media/<episode> page share the episode player audio rules.
+  const isMedia = location.pathname === '/media' || location.pathname.startsWith('/media/');
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -67,6 +70,7 @@ function AppContent() {
         <Route path="/gaming" element={<Navigate to="/" replace />} />
         <Route path="/media" element={<MediaPage />} />
         <Route path="/brand" element={<BrandRedirect />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

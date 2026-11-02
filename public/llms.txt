@@ -10,7 +10,6 @@ Onchain Africa is a live interview series produced by AfroPlay and hosted by Web
 
 ## Key pages
 
-- /gaming — AfroPlay's Web3 gaming and media platform overview, market analysis, services, and partner network
 - /media — Onchain Africa episode archive, host profile, guest alumni, and featured guest application
 - /brand — Official brand kit: logos, icons, and brand guidelines (Google Drive)
 
