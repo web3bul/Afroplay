@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-# GEO: permit AI training and citation crawlers
+# GEO: permit AI training, search and citation crawlers
 User-agent: GPTBot
 Allow: /
 
@@ -11,7 +11,14 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-User-agent: Claude-Web
+# Anthropic: training crawler, search indexing, user-initiated fetches
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
 Allow: /
 
 User-agent: Googlebot

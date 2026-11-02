@@ -1,10 +1,16 @@
 import React from 'react';
 import { ArrowRight, Gamepad2, Mic, PauseCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import PageMeta from '../components/PageMeta';
 
 const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-afro-bg flex flex-col relative overflow-hidden">
+      <PageMeta
+        title="AfroPlay — Africa's Web3 Gaming & Media Platform"
+        description="AfroPlay connects Web3 games with Africa's 60M+ gamers through community, content, and partnerships. Home of the Onchain Africa interview series."
+        canonical="https://afroplay.org/"
+      />
       {/* Background glows */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-afro-orange/10 rounded-full blur-[140px]" />

@@ -342,7 +342,6 @@ const MediaPage: React.FC = () => {
         title="Onchain Africa — Live Interviews with African Web3 Founders | AfroPlay"
         description="Onchain Africa is a live interview series spotlighting African Web3 founders and builders. 25+ episodes covering payments, gaming, DeFi and infrastructure. Hosted by Web3bull."
         canonical="https://afroplay.org/media"
-        ogImage="https://afroplay.org/og/media.svg"
       />
       <JsonLd data={mediaPageSchema} />
       <JsonLd data={mediaFaqSchema} />
