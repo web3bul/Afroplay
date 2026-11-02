@@ -342,7 +342,7 @@ const MediaPage: React.FC = () => {
     <main style={{ paddingBottom: miniPlayerActive ? 'max(0px, 96px)' : undefined }}>
       <PageMeta
         title="Onchain Africa — Live Interviews with African Web3 Founders | AfroPlay"
-        description="Onchain Africa is a live interview series spotlighting African Web3 founders and builders. 25+ episodes covering payments, gaming, DeFi and infrastructure. Hosted by Web3bull."
+        description={`Onchain Africa is a live interview series spotlighting African Web3 founders and builders. ${totalEpisodes} episodes covering payments, gaming, DeFi and infrastructure. Hosted by Web3bull.`}
         canonical="https://afroplay.org/media"
       />
       <JsonLd data={mediaPageSchema} />
