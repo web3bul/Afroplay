@@ -14,6 +14,34 @@ export interface Episode {
 }
 
 export const episodes: Episode[] = [
+  // -- EP 42 -- aired 2026-10-29 --
+  {
+    id: 42,
+    videoId: "eAXLfto00_E",
+    title: "From Retail Crypto Trader to Building the Tool He Wished He Had",
+    guest: "Uche Crypt",
+    guestHandle: "@uchecrypt",
+    guestImage: "https://pbs.twimg.com/profile_images/1999009857211445250/NnnaPrHo_400x400.jpg",
+    project: "Clona",
+    projectHandle: "@clona_official",
+    duration: "15:44",
+    tags: ["Trading", "Web3"],
+    youtubeUrl: "https://www.youtube.com/watch?v=eAXLfto00_E",
+  },
+  // -- EP 41 -- aired 2026-10-27 --
+  {
+    id: 41,
+    videoId: "l7BceNeBhHI",
+    title: "Building the fastest Neobank to convert crypto assets to fiat. Live with @ToochukwuOkoro2 (@useazza)",
+    guest: "Azzaman",
+    guestHandle: "@ToochukwuOkoro2",
+    guestImage: "https://pbs.twimg.com/profile_images/1966178917871419392/wrPcs-EH_400x400.jpg",
+    project: "Azza",
+    projectHandle: "@useazza",
+    duration: "51:25",
+    tags: ["Fintech", "Payments", "Stablecoins"],
+    youtubeUrl: "https://www.youtube.com/watch?v=l7BceNeBhHI",
+  },
   // -- EP 40 -- aired 2026-10-13 --
   {
     id: 40,
