@@ -1,14 +1,19 @@
 import React from 'react';
-import { ArrowRight, Gamepad2, Mic, PauseCircle } from 'lucide-react';
+import { ArrowRight, Clock, Gamepad2, Mic, PauseCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
+import { airedEpisodes, getEpisodePath, totalEpisodes, totalHours } from '../lib/episodes';
+
+// Newest episodes, linked to their own pages (internal links for crawlers too).
+const LATEST_COUNT = 6;
+const latestEpisodes = airedEpisodes.slice(0, LATEST_COUNT);
 
 const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-afro-bg flex flex-col relative overflow-hidden">
       <PageMeta
-        title="AfroPlay — Africa's Web3 Gaming & Media Platform"
-        description="AfroPlay connects Web3 games with Africa's 60M+ gamers through community, content, and partnerships. Home of the Onchain Africa interview series."
+        title="Onchain Africa by AfroPlay | African Web3 Founders"
+        description={`AfroPlay is home to Onchain Africa: live interviews with the African Web3 founders building payments, DeFi and more. Watch all ${totalEpisodes} episodes free.`}
         canonical="https://afroplay.org/"
       />
       {/* Background glows */}
@@ -20,20 +25,20 @@ const Home: React.FC = () => {
 
       <div className="flex-1 flex flex-col items-center justify-center px-4 md:px-6 py-8 md:py-24 relative z-10">
         {/* Logo */}
-        <img src="/logo.png" alt="AfroPlay" className="h-12 md:h-20 w-auto mb-3 md:mb-10 hover:opacity-90 transition-opacity anim-fade-in" />
+        <img src="/logo.png" alt="AfroPlay" width={80} height={80} className="h-12 md:h-20 w-auto mb-3 md:mb-10 hover:opacity-90 transition-opacity anim-fade-in" />
 
         <div className="text-center mb-4 md:mb-14 space-y-2 md:space-y-4">
           <p className="text-afro-orange text-xs font-bold uppercase tracking-[0.3em] anim-slide-up anim-d1">
-            Africa's Web3 Gaming & Media Platform
+            Onchain Africa by AfroPlay
           </p>
-          <h1 className="text-4xl md:text-6xl font-heading text-white leading-tight anim-slide-up anim-d2">
-            WHERE DO YOU<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-afro-orange to-red-500 neon-text">
-              WANT TO GO?
+          <h1 className="font-heading text-white leading-tight anim-slide-up anim-d2">
+            <span className="block text-4xl md:text-6xl">ONCHAIN AFRICA</span>
+            <span className="block text-xl md:text-3xl mt-1 md:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-afro-orange to-red-500 neon-text">
+              Interviews with African Web3 Founders
             </span>
           </h1>
-          <p className="hidden md:block text-gray-400 max-w-md mx-auto text-base leading-relaxed anim-fade-in anim-d3">
-            The home of Onchain Africa — live Web3 interviews with the builders shaping the continent. The Gaming Guild is on a short break.
+          <p className="text-gray-400 max-w-md mx-auto text-sm md:text-base leading-relaxed anim-fade-in anim-d3">
+            Live, unscripted conversations with the builders shaping the continent's onchain economy. The Gaming Guild is on a short break.
           </p>
         </div>
 
@@ -110,6 +115,83 @@ const Home: React.FC = () => {
           </Link>
         </div>
       </div>
+
+      {/* About — visible, crawlable copy describing what the site actually is.
+          Counts are computed from data/episodes.ts at build time. */}
+      <section aria-labelledby="about-heading" className="relative z-10 px-4 md:px-6 py-14 md:py-20 border-t border-white/5">
+        <div className="max-w-3xl mx-auto">
+          <p className="text-afro-orange text-xs font-bold uppercase tracking-widest mb-4">About AfroPlay</p>
+          <h2 id="about-heading" className="text-2xl md:text-4xl font-heading text-white mb-6">
+            The media home of Onchain Africa
+          </h2>
+          <div className="space-y-4 text-gray-400 leading-relaxed text-[15px]">
+            <p>
+              AfroPlay is the media home of Onchain Africa, a live interview series with the African
+              Web3 founders and builders changing how people across the continent pay, save, trade and
+              play onchain. Hosted by Web3bull, each episode is an unscripted conversation about what a
+              founder is building, the problem it solves for African users, and what it really takes to
+              ship.
+            </p>
+            <p>
+              So far Onchain Africa has released <strong className="text-white">{totalEpisodes} episodes</strong>{' '}
+              and more than <strong className="text-white">{totalHours} hours of conversation</strong>.
+              Guests have covered stablecoin payments and remittances, DeFi and onchain savings, crypto
+              trading tools, real-world assets, developer infrastructure, security and Web3 gaming. Every
+              episode has its own page on this site with the full video, the guest and their project, and
+              links to related conversations.
+            </p>
+            <p>
+              AfroPlay started as a Web3 gaming guild for African players. The guild is paused while we
+              focus on Onchain Africa. If you're building in African Web3,{' '}
+              <Link to="/media#featured" className="text-afro-orange hover:underline">apply to be a guest on the show</Link>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Latest episodes — internal links to the newest episode pages. */}
+      <section aria-labelledby="latest-heading" className="relative z-10 px-4 md:px-6 pb-16 md:pb-24">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-end justify-between gap-4 mb-8">
+            <h2 id="latest-heading" className="text-2xl md:text-4xl font-heading text-white">Latest episodes</h2>
+            <Link to="/media#episodes" className="text-afro-orange text-sm font-semibold inline-flex items-center gap-1 hover:gap-2 transition-all flex-shrink-0">
+              All {totalEpisodes} episodes <ArrowRight size={14} />
+            </Link>
+          </div>
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {latestEpisodes.map(ep => (
+              <li key={ep.id}>
+                <Link
+                  to={getEpisodePath(ep)}
+                  className="group block h-full bg-afro-card border border-white/5 rounded-2xl overflow-hidden hover:border-afro-orange/30 transition-colors"
+                >
+                  <div className="aspect-video bg-black relative overflow-hidden">
+                    <img
+                      src={`https://i.ytimg.com/vi/${ep.videoId}/hqdefault.jpg`}
+                      alt={ep.title}
+                      width={480}
+                      height={360}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <span className="absolute bottom-2 right-2 bg-black/80 text-white text-[11px] font-semibold px-2 py-0.5 rounded flex items-center gap-1">
+                      <Clock size={10} /> {ep.duration}
+                    </span>
+                  </div>
+                  <div className="p-5">
+                    <span className="text-xs font-bold text-afro-orange">EP #{String(ep.id).padStart(3, '0')}</span>
+                    <h3 className="text-white font-bold text-sm mt-2 mb-2 leading-snug line-clamp-2 group-hover:text-afro-orange transition-colors">
+                      {ep.title}
+                    </h3>
+                    <p className="text-zinc-400 text-xs">{ep.guest}{ep.project && ` · ${ep.project}`}</p>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       {/* pb-24 on mobile gives clearance above the 48px music button fixed bottom-right */}
       <footer className="text-center py-6 pb-24 md:pb-6 text-gray-600 text-xs relative z-10 border-t border-white/5">
