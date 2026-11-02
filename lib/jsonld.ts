@@ -1,15 +1,8 @@
 // JSON-LD schema generators — single source of truth for structured data.
-// Imported by page components; the Helmet <script> injection makes them
-// visible to JavaScript-executing crawlers (Googlebot, Bing, Perplexity).
-import { episodes } from '../data/episodes';
-
-// ── Helpers ──────────────────────────────────────────────────────────────────
-
-function durationToISO8601(mmss: string): string {
-  const parts = mmss.split(':');
-  if (parts.length === 3) return `PT${parts[0]}H${parts[1]}M${parts[2]}S`;
-  return `PT${parts[0]}M${parts[1]}S`;
-}
+// Rendered inline by <JsonLd>, so it is part of the prerendered HTML and visible
+// to crawlers that don't run JavaScript.
+import { episodes, Episode } from '../data/episodes';
+import { durationToISO8601, getEpisodePath, xProfileUrl, youtubeThumbnail } from './episodes';
 
 // ── Site-wide schemas (also embedded statically in index.html) ────────────────
 
@@ -99,7 +92,8 @@ export const mediaPageSchema = {
           '@id': ep.youtubeUrl,
           name: ep.title,
           episodeNumber: ep.id,
-          url: ep.youtubeUrl,
+          url: `https://afroplay.org${getEpisodePath(ep)}`,
+          sameAs: ep.youtubeUrl,
           duration: durationToISO8601(ep.duration),
           partOfSeries: { '@id': 'https://afroplay.org/media#podcast' },
         })),
@@ -162,3 +156,44 @@ export const mediaFaqSchema = {
     },
   ],
 };
+
+// ── /media/<slug> episode pages ──────────────────────────────────────────────
+
+/**
+ * VideoObject + BreadcrumbList for one episode.
+ * `uploadDate` is only emitted when the episode has a real `publishedAt`; an
+ * air date is not the YouTube upload date, so we omit it rather than guess.
+ */
+export function episodeSchema(ep: Episode, description: string) {
+  const url = `https://afroplay.org${getEpisodePath(ep)}`;
+  const guestUrl = xProfileUrl(ep.guestHandle);
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'VideoObject',
+        '@id': `${url}#video`,
+        name: ep.title,
+        description,
+        thumbnailUrl: youtubeThumbnail(ep.videoId),
+        ...(ep.publishedAt ? { uploadDate: ep.publishedAt } : {}),
+        duration: durationToISO8601(ep.duration),
+        embedUrl: `https://www.youtube.com/embed/${ep.videoId}`,
+        contentUrl: ep.youtubeUrl,
+        url,
+        inLanguage: 'en',
+        isPartOf: { '@id': 'https://afroplay.org/media#podcast' },
+        publisher: { '@id': 'https://afroplay.org/#organization' },
+        ...(guestUrl ? { about: { '@type': 'Person', name: ep.guest, sameAs: guestUrl } } : {}),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://afroplay.org/' },
+          { '@type': 'ListItem', position: 2, name: 'Onchain Africa', item: 'https://afroplay.org/media' },
+          { '@type': 'ListItem', position: 3, name: ep.title, item: url },
+        ],
+      },
+    ],
+  };
+}

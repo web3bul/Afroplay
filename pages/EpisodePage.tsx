@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Clock, Play, Youtube } from 'lucide-react';
-import PageMeta from '../components/PageMeta';
+import PageMeta, { JsonLd } from '../components/PageMeta';
+import { episodeSchema } from '../lib/jsonld';
 import NotFound from './NotFound';
 import { Episode } from '../data/episodes';
 import {
@@ -128,6 +129,7 @@ const EpisodePage: React.FC = () => {
         ogImageHeight={360}
         ogType="video.other"
       />
+      <JsonLd data={episodeSchema(ep, description)} />
 
       <div className="max-w-4xl mx-auto px-6">
         <nav aria-label="Breadcrumb" className="text-xs text-zinc-500 mb-6 flex flex-wrap items-center gap-2">
