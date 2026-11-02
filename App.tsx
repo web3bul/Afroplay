@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import MediaPage from './pages/MediaPage';
 import BrandRedirect from './pages/BrandRedirect';
+import EpisodePage from './pages/EpisodePage';
 import NotFound from './pages/NotFound';
 
 // Route tree shared by the browser (BrowserRouter, index.tsx) and the build-time
@@ -69,6 +70,7 @@ export function AppContent() {
             where the paused state is shown. Restore the GamingPage route to reopen. */}
         <Route path="/gaming" element={<Navigate to="/" replace />} />
         <Route path="/media" element={<MediaPage />} />
+        <Route path="/media/:slug" element={<EpisodePage />} />
         <Route path="/brand" element={<BrandRedirect />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

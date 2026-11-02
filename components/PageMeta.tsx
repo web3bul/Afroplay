@@ -12,6 +12,9 @@ interface PageMetaProps {
    *  don't render SVG). Defaults to /og/default.png. */
   ogImage?: string;
   ogImageAlt?: string;
+  /** Pixel size of ogImage; defaults to the 1200×630 default card. */
+  ogImageWidth?: number;
+  ogImageHeight?: number;
   ogType?: 'website' | 'article' | 'video.other';
 }
 
@@ -30,6 +33,8 @@ const PageMeta: React.FC<PageMetaProps> = ({
   canonical,
   ogImage = DEFAULT_OG_IMAGE,
   ogImageAlt = DEFAULT_OG_IMAGE_ALT,
+  ogImageWidth = 1200,
+  ogImageHeight = 630,
   ogType = 'website',
   noindex = false,
 }) => (
@@ -45,8 +50,8 @@ const PageMeta: React.FC<PageMetaProps> = ({
     <meta property="og:description" content={description} />
     {canonical && <meta property="og:url" content={canonical} />}
     <meta property="og:image" content={ogImage} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content={String(ogImageWidth)} />
+    <meta property="og:image:height" content={String(ogImageHeight)} />
     <meta property="og:image:alt" content={ogImageAlt} />
 
     {/* Twitter / X card */}

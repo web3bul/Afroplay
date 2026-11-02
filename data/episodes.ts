@@ -11,6 +11,11 @@ export interface Episode {
   tags: string[];
   youtubeUrl: string;
   status?: 'upcoming'; // only set for scheduled episodes not yet aired
+  // Optional, hand-written extras. The weekly publishing job does not set these;
+  // episode pages render them only when present.
+  summary?: string;
+  transcript?: string;
+  publishedAt?: string; // ISO date (YYYY-MM-DD) the video went public on YouTube
 }
 
 export const episodes: Episode[] = [

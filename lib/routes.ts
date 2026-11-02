@@ -1,7 +1,7 @@
 // The URLs that get prerendered to static HTML at build time, plus their
 // sitemap metadata. /gaming and /brand are server redirects in vercel.json, so
 // they are neither prerendered nor listed in the sitemap.
-import { latestAirDate } from './episodes';
+import { airedEpisodes, getAirDate, getEpisodePath, latestAirDate } from './episodes';
 
 export const SITE_URL = 'https://afroplay.org';
 
@@ -25,6 +25,14 @@ export function getPrerenderRoutes(): PrerenderRoute[] {
     // Both change whenever a new episode airs, so they share its date.
     { path: '/', file: 'index.html', sitemap: { priority: 1.0, lastmod: latestAirDate } },
     { path: '/media', file: 'media/index.html', sitemap: { priority: 0.9, lastmod: latestAirDate } },
+    // One page per aired episode, generated from data/episodes.ts so new episodes
+    // get a page (and a sitemap entry) with no other changes. lastmod is the
+    // episode's own air date; omitted if the data file has none for it.
+    ...airedEpisodes.map(ep => ({
+      path: getEpisodePath(ep),
+      file: `${getEpisodePath(ep).slice(1)}/index.html`,
+      sitemap: { priority: 0.7, lastmod: getAirDate(ep) },
+    })),
     // Rendered by the catch-all route; Vercel serves dist/404.html with a 404 status.
     { path: '/__not-found__', file: '404.html' },
   ];

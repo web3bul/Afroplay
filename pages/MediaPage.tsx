@@ -4,8 +4,9 @@ import Contact from '../components/Contact';
 import PageMeta, { JsonLd } from '../components/PageMeta';
 import { mediaPageSchema, mediaFaqSchema } from '../lib/jsonld';
 import { useInView } from '../hooks/useInView';
-import { episodes, Episode } from '../data/episodes';
-import { airedEpisodes, totalEpisodes, totalHours } from '../lib/episodes';
+import { Link } from 'react-router-dom';
+import { episodes } from '../data/episodes';
+import { airedEpisodes, getEpisodePath, totalEpisodes, totalHours } from '../lib/episodes';
 
 // ─── Brand icon components ────────────────────────────────────────────────────
 
@@ -187,6 +188,20 @@ const AnimatedNumber: React.FC<{ value: string; start: boolean; duration?: numbe
   return <>{display}{suffix}</>;
 };
 
+// Secondary link under each episode card. A sibling of the card's <Link> (not
+// nested inside it) so the markup stays valid.
+const WatchOnYouTube: React.FC<{ url: string; title: string }> = ({ url, title }) => (
+  <a
+    href={url}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={`Watch on YouTube: ${title}`}
+    className="flex items-center justify-between gap-2 px-5 py-3 min-h-[44px] border-t border-white/5 text-zinc-400 hover:text-afro-orange text-xs font-semibold transition-colors"
+  >
+    Watch on YouTube <Youtube size={14} />
+  </a>
+);
+
 // ─── Derived data ─────────────────────────────────────────────────────────────
 
 // Aired-only stats live in lib/episodes so the homepage, sitemap and this page
@@ -267,7 +282,6 @@ const MediaPage: React.FC = () => {
   const [mobileCardIdx, setMobileCardIdx] = useState(0);
   const mobileCarouselRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedEpisode, setSelectedEpisode] = useState<Episode | null>(null);
   const [showMiniPlayer, setShowMiniPlayer] = useState(false);
   const [miniPlayerDismissed, setMiniPlayerDismissed] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -285,18 +299,6 @@ const MediaPage: React.FC = () => {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
-  // Lock background scroll when preview modal is open; close on Escape.
-  useEffect(() => {
-    if (!selectedEpisode) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setSelectedEpisode(null); };
-    window.addEventListener('keydown', onKey);
-    document.body.style.overflow = 'hidden';
-    return () => {
-      window.removeEventListener('keydown', onKey);
-      document.body.style.overflow = '';
-    };
-  }, [selectedEpisode]);
 
   // Reset pagination when filter/search changes.
   useEffect(() => {
@@ -660,51 +662,52 @@ const MediaPage: React.FC = () => {
                     onScroll={handleCarouselScroll}
                   >
                     {filteredEpisodes.map(ep => (
-                      <button
-                        type="button"
+                      <div
                         key={ep.id}
-                        onClick={() => setSelectedEpisode(ep)}
-                        className="flex-none w-[82vw] snap-start text-left bg-afro-card border border-white/5 rounded-2xl overflow-hidden hover:border-afro-orange/30 group relative"
+                        className="flex-none w-[82vw] snap-start bg-afro-card border border-white/5 rounded-2xl overflow-hidden hover:border-afro-orange/30 group relative flex flex-col"
                       >
-                        <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-afro-orange to-red-500 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
-                        <div className="aspect-video bg-black relative overflow-hidden">
-                          <img
-                            src={`https://img.youtube.com/vi/${ep.videoId}/maxresdefault.jpg`}
-                            onError={handleThumbnailError}
-                            alt={ep.title}
-                            loading="lazy"
-                            className="w-full h-full object-cover"
-                          />
-                          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <PlayCircle className="w-10 h-10 text-white" />
-                          </div>
-                          {ep.duration && (
-                            <span className="absolute bottom-2 right-2 bg-black/80 text-white text-[11px] font-semibold px-2 py-0.5 rounded flex items-center gap-1">
-                              <Clock size={10} /> {ep.duration}
-                            </span>
-                          )}
-                        </div>
-                        <div className="p-5">
-                          <span className="text-xs font-bold text-afro-orange bg-afro-orange/10 border border-afro-orange/20 px-3 py-1 rounded-full">
-                            EP #{String(ep.id).padStart(3, '0')}
-                          </span>
-                          <h3 className="text-white font-bold text-sm mt-4 mb-2 leading-snug line-clamp-2">{ep.title}</h3>
-                          <div className="flex items-center gap-2 mb-4">
-                            <GuestAvatar name={ep.guest} image={ep.guestImage} className="w-8 h-8 text-[10px] flex-shrink-0" />
-                            <p className="text-zinc-400 text-xs">{ep.guest}{ep.project && ` — ${ep.project}`}</p>
-                          </div>
-                          <div className="flex items-center justify-between gap-2">
-                            <div className="flex gap-1.5 flex-wrap">
-                              {ep.tags.slice(0, 2).map(tag => (
-                                <span key={tag} className="text-[10px] text-zinc-400 bg-white/5 px-2 py-0.5 rounded-full">{tag}</span>
-                              ))}
+                        <Link to={getEpisodePath(ep)} className="block flex-1 text-left">
+                          <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-afro-orange to-red-500 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
+                          <div className="aspect-video bg-black relative overflow-hidden">
+                            <img
+                              src={`https://img.youtube.com/vi/${ep.videoId}/maxresdefault.jpg`}
+                              onError={handleThumbnailError}
+                              alt={ep.title}
+                              loading="lazy"
+                              className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                              <PlayCircle className="w-10 h-10 text-white" />
                             </div>
-                            <span className="text-afro-orange text-xs font-semibold flex items-center gap-1 flex-shrink-0">
-                              Preview <ArrowRight size={11} />
-                            </span>
+                            {ep.duration && (
+                              <span className="absolute bottom-2 right-2 bg-black/80 text-white text-[11px] font-semibold px-2 py-0.5 rounded flex items-center gap-1">
+                                <Clock size={10} /> {ep.duration}
+                              </span>
+                            )}
                           </div>
-                        </div>
-                      </button>
+                          <div className="p-5">
+                            <span className="text-xs font-bold text-afro-orange bg-afro-orange/10 border border-afro-orange/20 px-3 py-1 rounded-full">
+                              EP #{String(ep.id).padStart(3, '0')}
+                            </span>
+                            <h3 className="text-white font-bold text-sm mt-4 mb-2 leading-snug line-clamp-2">{ep.title}</h3>
+                            <div className="flex items-center gap-2 mb-4">
+                              <GuestAvatar name={ep.guest} image={ep.guestImage} className="w-8 h-8 text-[10px] flex-shrink-0" />
+                              <p className="text-zinc-400 text-xs">{ep.guest}{ep.project && ` — ${ep.project}`}</p>
+                            </div>
+                            <div className="flex items-center justify-between gap-2">
+                              <div className="flex gap-1.5 flex-wrap">
+                                {ep.tags.slice(0, 2).map(tag => (
+                                  <span key={tag} className="text-[10px] text-zinc-400 bg-white/5 px-2 py-0.5 rounded-full">{tag}</span>
+                                ))}
+                              </div>
+                              <span className="text-afro-orange text-xs font-semibold flex items-center gap-1 flex-shrink-0">
+                                View episode <ArrowRight size={11} />
+                              </span>
+                            </div>
+                          </div>
+                        </Link>
+                        <WatchOnYouTube url={ep.youtubeUrl} title={ep.title} />
+                      </div>
                     ))}
                   </div>
 
@@ -727,27 +730,28 @@ const MediaPage: React.FC = () => {
                 <div className="md:hidden">
                   <div className="grid gap-4 mb-6">
                     {filteredEpisodes.map(ep => (
-                      <button
-                        type="button"
+                      <div
                         key={ep.id}
-                        onClick={() => setSelectedEpisode(ep)}
-                        className="text-left bg-afro-card border border-white/5 rounded-2xl overflow-hidden hover:border-afro-orange/30 group relative flex gap-3 p-3"
+                        className="bg-afro-card border border-white/5 rounded-2xl overflow-hidden hover:border-afro-orange/30 group relative flex flex-col"
                       >
-                        <div className="w-24 flex-shrink-0 aspect-video rounded-lg overflow-hidden bg-black relative">
-                          <img
-                            src={`https://img.youtube.com/vi/${ep.videoId}/hqdefault.jpg`}
-                            onError={handleThumbnailError}
-                            alt={ep.title}
-                            loading="lazy"
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0 flex flex-col justify-center">
-                          <span className="text-[10px] font-bold text-afro-orange mb-1">EP #{String(ep.id).padStart(3, '0')}</span>
-                          <p className="text-white font-semibold text-xs leading-snug line-clamp-2 mb-1">{ep.title}</p>
-                          <p className="text-zinc-400 text-[10px]">{ep.guest}{ep.project && ` — ${ep.project}`}</p>
-                        </div>
-                      </button>
+                        <Link to={getEpisodePath(ep)} className="flex gap-3 p-3 flex-1 text-left">
+                          <div className="w-24 flex-shrink-0 aspect-video rounded-lg overflow-hidden bg-black relative">
+                            <img
+                              src={`https://img.youtube.com/vi/${ep.videoId}/hqdefault.jpg`}
+                              onError={handleThumbnailError}
+                              alt={ep.title}
+                              loading="lazy"
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <div className="flex-1 min-w-0 flex flex-col justify-center">
+                            <span className="text-[10px] font-bold text-afro-orange mb-1">EP #{String(ep.id).padStart(3, '0')}</span>
+                            <p className="text-white font-semibold text-xs leading-snug line-clamp-2 mb-1">{ep.title}</p>
+                            <p className="text-zinc-400 text-[10px]">{ep.guest}{ep.project && ` — ${ep.project}`}</p>
+                          </div>
+                        </Link>
+                        <WatchOnYouTube url={ep.youtubeUrl} title={ep.title} />
+                      </div>
                     ))}
                   </div>
                   <button
@@ -763,54 +767,55 @@ const MediaPage: React.FC = () => {
               {/* ── Desktop: grid ── */}
               <div ref={episodesRef} className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {visibleEpisodes.map((ep, i) => (
-                  <button
-                    type="button"
+                  <div
                     key={ep.id}
                     id={`episode-${ep.id}`}
-                    onClick={() => setSelectedEpisode(ep)}
-                    className="text-left bg-afro-card border border-white/5 rounded-2xl overflow-hidden hover:border-afro-orange/30 group relative"
+                    className="bg-afro-card border border-white/5 rounded-2xl overflow-hidden hover:border-afro-orange/30 group relative flex flex-col"
                     style={{
                       ...revealStyle(episodesVis, (i % DEFAULT_VISIBLE) * 50),
                       transition: `opacity 0.45s ease-out ${(i % DEFAULT_VISIBLE) * 50}ms, transform 0.45s ease-out ${(i % DEFAULT_VISIBLE) * 50}ms, border-color 0.2s ease`,
                     }}
                   >
-                    <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-afro-orange to-red-500 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
-                    <div className="aspect-video bg-black relative overflow-hidden">
-                      <img
-                        src={`https://img.youtube.com/vi/${ep.videoId}/maxresdefault.jpg`}
-                        onError={handleThumbnailError}
-                        alt={ep.title}
-                        loading="lazy"
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <PlayCircle className="w-10 h-10 text-white" />
-                      </div>
-                      <span className="absolute bottom-2 right-2 bg-black/80 text-white text-[11px] font-semibold px-2 py-0.5 rounded flex items-center gap-1">
-                        <Clock size={10} /> {ep.duration}
-                      </span>
-                    </div>
-                    <div className="p-5">
-                      <span className="text-xs font-bold text-afro-orange bg-afro-orange/10 border border-afro-orange/20 px-3 py-1 rounded-full">
-                        EP #{String(ep.id).padStart(3, '0')}
-                      </span>
-                      <h3 className="text-white font-bold text-sm mt-4 mb-2 leading-snug line-clamp-2">{ep.title}</h3>
-                      <div className="flex items-center gap-2 mb-4">
-                        <GuestAvatar name={ep.guest} image={ep.guestImage} className="w-8 h-8 text-[10px] flex-shrink-0" />
-                        <p className="text-zinc-400 text-xs">{ep.guest}{ep.project && ` — ${ep.project}`}</p>
-                      </div>
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="flex gap-1.5 flex-wrap">
-                          {ep.tags.slice(0, 2).map(tag => (
-                            <span key={tag} className="text-[10px] text-zinc-400 bg-white/5 px-2 py-0.5 rounded-full">{tag}</span>
-                          ))}
+                    <Link to={getEpisodePath(ep)} className="block flex-1 text-left">
+                      <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-afro-orange to-red-500 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
+                      <div className="aspect-video bg-black relative overflow-hidden">
+                        <img
+                          src={`https://img.youtube.com/vi/${ep.videoId}/maxresdefault.jpg`}
+                          onError={handleThumbnailError}
+                          alt={ep.title}
+                          loading="lazy"
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                          <PlayCircle className="w-10 h-10 text-white" />
                         </div>
-                        <span className="text-afro-orange text-xs font-semibold flex items-center gap-1 flex-shrink-0">
-                          Preview <ArrowRight size={11} />
+                        <span className="absolute bottom-2 right-2 bg-black/80 text-white text-[11px] font-semibold px-2 py-0.5 rounded flex items-center gap-1">
+                          <Clock size={10} /> {ep.duration}
                         </span>
                       </div>
-                    </div>
-                  </button>
+                      <div className="p-5">
+                        <span className="text-xs font-bold text-afro-orange bg-afro-orange/10 border border-afro-orange/20 px-3 py-1 rounded-full">
+                          EP #{String(ep.id).padStart(3, '0')}
+                        </span>
+                        <h3 className="text-white font-bold text-sm mt-4 mb-2 leading-snug line-clamp-2">{ep.title}</h3>
+                        <div className="flex items-center gap-2 mb-4">
+                          <GuestAvatar name={ep.guest} image={ep.guestImage} className="w-8 h-8 text-[10px] flex-shrink-0" />
+                          <p className="text-zinc-400 text-xs">{ep.guest}{ep.project && ` — ${ep.project}`}</p>
+                        </div>
+                        <div className="flex items-center justify-between gap-2">
+                          <div className="flex gap-1.5 flex-wrap">
+                            {ep.tags.slice(0, 2).map(tag => (
+                              <span key={tag} className="text-[10px] text-zinc-400 bg-white/5 px-2 py-0.5 rounded-full">{tag}</span>
+                            ))}
+                          </div>
+                          <span className="text-afro-orange text-xs font-semibold flex items-center gap-1 flex-shrink-0">
+                            View episode <ArrowRight size={11} />
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                    <WatchOnYouTube url={ep.youtubeUrl} title={ep.title} />
+                  </div>
                 ))}
               </div>
             </>
@@ -1076,73 +1081,6 @@ const MediaPage: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* ─── EPISODE PREVIEW MODAL ─── */}
-      {selectedEpisode && (
-        <div
-          className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-          onClick={() => setSelectedEpisode(null)}
-        >
-          <div
-            className="bg-afro-card border border-afro-orange/20 rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl"
-            onClick={e => e.stopPropagation()}
-          >
-            <div className="aspect-video relative">
-              <img
-                src={`https://img.youtube.com/vi/${selectedEpisode.videoId}/maxresdefault.jpg`}
-                onError={handleThumbnailError}
-                alt={selectedEpisode.title}
-                loading="lazy"
-                className="w-full h-full object-cover"
-              />
-              <button
-                type="button"
-                onClick={() => setSelectedEpisode(null)}
-                aria-label="Close"
-                className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/70 hover:bg-black/90 text-white flex items-center justify-center transition-colors"
-              >
-                <X size={16} />
-              </button>
-              <span className="absolute bottom-3 right-3 bg-black/80 text-white text-xs px-2 py-1 rounded-md flex items-center gap-1">
-                <Clock size={10} /> {selectedEpisode.duration}
-              </span>
-            </div>
-
-            <div className="p-6">
-              <span className="text-xs font-bold text-afro-orange bg-afro-orange/10 border border-afro-orange/20 px-3 py-1 rounded-full">
-                EP #{String(selectedEpisode.id).padStart(3, '0')}
-              </span>
-
-              <h3 className="text-white font-bold text-lg mt-4 mb-3 leading-snug">{selectedEpisode.title}</h3>
-
-              <div className="flex items-center gap-3 mb-4 group">
-                <GuestAvatar name={selectedEpisode.guest} image={selectedEpisode.guestImage} className="w-10 h-10 text-xs flex-shrink-0" />
-                <div>
-                  <p className="text-white text-sm font-semibold">{selectedEpisode.guest}</p>
-                  {selectedEpisode.project && <p className="text-zinc-400 text-xs">{selectedEpisode.project}</p>}
-                </div>
-              </div>
-
-              <div className="flex gap-2 flex-wrap mb-6">
-                {selectedEpisode.tags.map(tag => (
-                  <span key={tag} className="text-xs text-zinc-400 bg-white/5 px-2.5 py-0.5 rounded-full">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <a
-                href={selectedEpisode.youtubeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-afro-orange hover:bg-orange-600 rounded-lg text-white font-bold transition-colors"
-              >
-                Watch on YouTube <ArrowRight size={16} />
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* ─── FAQ accordion ─── */}
       <section aria-labelledby="faq-heading" className="py-16 md:py-24 bg-afro-card border-t border-white/5">
