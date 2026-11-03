@@ -18,7 +18,7 @@ const GamingPage: React.FC = () => {
         title={TITLE}
         description={DESCRIPTION}
         canonical="https://afroplay.org/gaming"
-        ogImage="https://afroplay.org/og/gaming.svg"
+        ogImage="https://afroplay.org/og/gaming.png"
       />
       <JsonLd data={gamingPageSchema} />
 

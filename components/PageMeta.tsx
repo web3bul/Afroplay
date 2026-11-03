@@ -5,7 +5,7 @@ interface PageMetaProps {
   title: string;
   description: string;
   canonical: string;
-  /** Absolute URL to the OG image (1200×630). Defaults to /og/default.svg */
+  /** Absolute URL to the OG image (1200×630). Defaults to /og/home.png */
   ogImage?: string;
   ogType?: 'website' | 'article';
 }
@@ -19,7 +19,7 @@ const PageMeta: React.FC<PageMetaProps> = ({
   title,
   description,
   canonical,
-  ogImage = 'https://afroplay.org/og/default.svg',
+  ogImage = 'https://afroplay.org/og/home.png',
   ogType = 'website',
 }) => (
   <Helmet>

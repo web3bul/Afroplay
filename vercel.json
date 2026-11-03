@@ -3,7 +3,9 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/gaming", "destination": "/", "permanent": true },
+    { "source": "/brand", "destination": "https://drive.google.com/drive/folders/1nxWgNnN53c4FA3ri5f9LBoXu92z8SLP2?usp=sharing", "permanent": false }
   ]
 }

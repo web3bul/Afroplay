@@ -3,9 +3,12 @@
 // visible to JavaScript-executing crawlers (Googlebot, Bing, Perplexity).
 import { episodes } from '../data/episodes';
 
+/** Published (aired) episode count — keeps copy in sync with data/episodes.ts. */
+export const episodeCount = episodes.filter((e) => e.status !== 'upcoming').length;
+
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
-function durationToISO8601(mmss: string): string {
+export function durationToISO8601(mmss: string): string {
   const parts = mmss.split(':');
   if (parts.length === 3) return `PT${parts[0]}H${parts[1]}M${parts[2]}S`;
   return `PT${parts[0]}M${parts[1]}S`;
@@ -125,7 +128,7 @@ export const mediaFaqSchema = {
       name: 'What is Onchain Africa?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Onchain Africa is a live interview series by AfroPlay that spotlights African Web3 founders and builders. Hosted by Web3bull, the show features unscripted conversations about how African innovators are building on the blockchain. Onchain Africa has produced 25+ episodes covering payments, gaming, DeFi, NFTs, and infrastructure.',
+        text: `Onchain Africa is a live interview series by AfroPlay that spotlights African Web3 founders and builders. Hosted by Web3bull, the show features unscripted conversations about how African innovators are building on the blockchain. Onchain Africa has produced ${episodeCount} episodes covering payments, gaming, DeFi, NFTs, and infrastructure.`,
       },
     },
     {
@@ -162,3 +165,40 @@ export const mediaFaqSchema = {
     },
   ],
 };
+
+// ── Per-episode pages ────────────────────────────────────────────────────────
+
+import type { Episode } from '../data/episodes';
+import { episodeDescription, episodeUrl, SITE_URL } from './episodes';
+
+export function episodeSchema(ep: Episode) {
+  const url = episodeUrl(ep);
+  const video: Record<string, unknown> = {
+    '@type': 'VideoObject',
+    '@id': `${url}#video`,
+    name: ep.title,
+    description: episodeDescription(ep),
+    thumbnailUrl: [`https://img.youtube.com/vi/${ep.videoId}/maxresdefault.jpg`, `https://img.youtube.com/vi/${ep.videoId}/hqdefault.jpg`],
+    duration: durationToISO8601(ep.duration),
+    embedUrl: `https://www.youtube.com/embed/${ep.videoId}`,
+    contentUrl: ep.youtubeUrl,
+    publisher: { '@id': `${SITE_URL}/#organization` },
+    isPartOf: { '@type': 'CreativeWorkSeries', name: 'Onchain Africa', url: `${SITE_URL}/media` },
+    inLanguage: 'en',
+  };
+  if (ep.aired) video.uploadDate = ep.aired;
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      video,
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'AfroPlay', item: `${SITE_URL}/` },
+          { '@type': 'ListItem', position: 2, name: 'Onchain Africa', item: `${SITE_URL}/media` },
+          { '@type': 'ListItem', position: 3, name: `EP ${ep.id}: ${ep.guest}`, item: url },
+        ],
+      },
+    ],
+  };
+}

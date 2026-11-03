@@ -54,7 +54,7 @@ const Contact: React.FC = () => {
 
         <div className="mb-10 flex justify-center">
           <img
-            src="/logo.png"
+            src="/generated/logo-256.png"
             alt="AfroPlay Logo"
             className="h-24 w-auto object-contain hover:scale-105 transition-transform"
           />

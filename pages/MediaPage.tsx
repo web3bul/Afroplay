@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Mic, PlayCircle, Play, Clock, ArrowRight, Mail, Quote, Send, Search, X, Youtube, ChevronDown, Calendar } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Contact from '../components/Contact';
+import { episodePath, cleanEpisodeTitle } from '../lib/episodes';
 import PageMeta, { JsonLd } from '../components/PageMeta';
-import { mediaPageSchema, mediaFaqSchema } from '../lib/jsonld';
+import { mediaPageSchema, mediaFaqSchema, episodeCount } from '../lib/jsonld';
 import { useInView } from '../hooks/useInView';
 import { episodes, Episode } from '../data/episodes';
 
@@ -340,9 +342,9 @@ const MediaPage: React.FC = () => {
     <main style={{ paddingBottom: miniPlayerActive ? 'max(0px, 96px)' : undefined }}>
       <PageMeta
         title="Onchain Africa — Live Interviews with African Web3 Founders | AfroPlay"
-        description="Onchain Africa is a live interview series spotlighting African Web3 founders and builders. 25+ episodes covering payments, gaming, DeFi and infrastructure. Hosted by Web3bull."
+        description={`Onchain Africa is a live interview series spotlighting African Web3 founders and builders. ${episodeCount} episodes covering payments, gaming, DeFi and infrastructure. Hosted by Web3bull.`}
         canonical="https://afroplay.org/media"
-        ogImage="https://afroplay.org/og/media.svg"
+        ogImage="https://afroplay.org/og/media.png"
       />
       <JsonLd data={mediaPageSchema} />
       <JsonLd data={mediaFaqSchema} />
@@ -1143,10 +1145,35 @@ const MediaPage: React.FC = () => {
               >
                 Watch on YouTube <ArrowRight size={16} />
               </a>
+              <Link
+                to={episodePath(selectedEpisode)}
+                onClick={() => setSelectedEpisode(null)}
+                className="mt-3 w-full inline-flex items-center justify-center gap-2 px-6 py-3 border border-white/10 hover:border-afro-orange/30 rounded-lg text-zinc-300 hover:text-white text-sm font-medium transition-colors"
+              >
+                Episode page
+              </Link>
             </div>
           </div>
         </div>
       )}
+
+      {/* ─── ALL EPISODES — plain, crawlable index linking to every episode page ─── */}
+      <section aria-labelledby="all-episodes-heading" className="py-16 md:py-20 border-t border-white/5">
+        <div className="max-w-5xl mx-auto px-6">
+          <h2 id="all-episodes-heading" className="text-2xl font-heading text-white mb-8">All Onchain Africa episodes</h2>
+          <ol className="grid md:grid-cols-2 gap-x-10 gap-y-3 text-sm">
+            {airedEpisodes.map(ep => (
+              <li key={ep.id} className="flex gap-3">
+                <span className="text-afro-orange font-bold w-12 flex-shrink-0">EP {ep.id}</span>
+                <Link to={episodePath(ep)} className="text-zinc-300 hover:text-white">
+                  {ep.guest}{ep.project && ` — ${ep.project}`}
+                  <span className="block text-zinc-500 text-xs">{cleanEpisodeTitle(ep.title)}</span>
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
 
       {/* ─── FAQ accordion ─── */}
       <section aria-labelledby="faq-heading" className="py-16 md:py-24 bg-afro-card border-t border-white/5">
@@ -1160,7 +1187,7 @@ const MediaPage: React.FC = () => {
             {([
               {
                 q: 'What is Onchain Africa?',
-                a: 'Onchain Africa is a live interview series by AfroPlay that spotlights African Web3 founders and builders. Hosted by Web3bull, the show features unscripted conversations about how African innovators are building on the blockchain. Onchain Africa has produced 24+ episodes covering payments, gaming, DeFi, NFTs, and infrastructure.',
+                a: `Onchain Africa is a live interview series by AfroPlay that spotlights African Web3 founders and builders. Hosted by Web3bull, the show features unscripted conversations about how African innovators are building on the blockchain. Onchain Africa has produced ${episodeCount} episodes covering payments, gaming, DeFi, NFTs, and infrastructure.`,
               },
               {
                 q: 'How do I get featured on Onchain Africa?',

@@ -1,10 +1,17 @@
 import React from 'react';
 import { ArrowRight, Gamepad2, Mic, PauseCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import PageMeta from '../components/PageMeta';
 
 const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-afro-bg flex flex-col relative overflow-hidden">
+      <PageMeta
+        title="AfroPlay — Africa's Web3 Gaming & Media Platform"
+        description="AfroPlay connects Web3 games with Africa's 60M+ gamers through community, content, and partnerships. Home of the Onchain Africa interview series."
+        canonical="https://afroplay.org/"
+        ogImage="https://afroplay.org/og/home.png"
+      />
       {/* Background glows */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-afro-orange/10 rounded-full blur-[140px]" />
@@ -14,7 +21,7 @@ const Home: React.FC = () => {
 
       <div className="flex-1 flex flex-col items-center justify-center px-4 md:px-6 py-8 md:py-24 relative z-10">
         {/* Logo */}
-        <img src="/logo.png" alt="AfroPlay" className="h-12 md:h-20 w-auto mb-3 md:mb-10 hover:opacity-90 transition-opacity anim-fade-in" />
+        <img src="/generated/logo-256.png" alt="AfroPlay" className="h-12 md:h-20 w-auto mb-3 md:mb-10 hover:opacity-90 transition-opacity anim-fade-in" />
 
         <div className="text-center mb-4 md:mb-14 space-y-2 md:space-y-4">
           <p className="text-afro-orange text-xs font-bold uppercase tracking-[0.3em] anim-slide-up anim-d1">

@@ -43,7 +43,7 @@ const BrandKitCTA: React.FC<BrandKitCTAProps> = ({ subtitle }) => {
                 }}
               >
                 <img
-                  src="/logo.png"
+                  src="/generated/logo-256.png"
                   alt=""
                   aria-hidden="true"
                   className="object-contain grayscale"

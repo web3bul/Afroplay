@@ -70,7 +70,7 @@ const Navbar: React.FC = () => {
         {/* Logo — mark + wordmark so it's legible at nav size */}
         <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           <img
-            src="/logo.png"
+            src="/generated/logo-256.png"
             alt="AfroPlay"
             className="h-8 w-auto object-contain"
           />
