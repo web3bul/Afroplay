@@ -44,7 +44,7 @@ const Partners: React.FC = () => {
           {/* Hub — AfroPlay logo */}
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-3 z-10">
             <div className="w-24 h-24 rounded-full bg-black border border-afro-orange/70 shadow-[0_0_25px_rgba(255,107,0,0.35)] flex items-center justify-center">
-              <img src="/logo.png" alt="Afro Play" className="w-14 h-14 object-contain" />
+              <img src="/generated/logo-256.png" alt="Afro Play" className="w-14 h-14 object-contain" />
             </div>
           </div>
 

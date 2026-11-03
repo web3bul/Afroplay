@@ -6,11 +6,10 @@ AfroPlay is an African Web3 gaming and media company headquartered in Nigeria. A
 
 ## Onchain Africa
 
-Onchain Africa is a live interview series produced by AfroPlay and hosted by Web3bull. Each episode features an unscripted conversation with an African Web3 founder or builder. The show covers topics including DeFi, payments and fintech, NFTs, infrastructure, Web3 gaming, and community building — all from the perspective of African innovators building on the blockchain. As of 2025, Onchain Africa has released 24+ episodes.
+Onchain Africa is a live interview series produced by AfroPlay and hosted by Web3bull. Each episode features an unscripted conversation with an African Web3 founder or builder. The show covers topics including DeFi, payments and fintech, NFTs, infrastructure, Web3 gaming, and community building — all from the perspective of African innovators building on the blockchain. Onchain Africa has released 40+ episodes and publishes new ones regularly.
 
 ## Key pages
 
-- /gaming — AfroPlay's Web3 gaming and media platform overview, market analysis, services, and partner network
 - /media — Onchain Africa episode archive, host profile, guest alumni, and featured guest application
 - /brand — Official brand kit: logos, icons, and brand guidelines (Google Drive)
 

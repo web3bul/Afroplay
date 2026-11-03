@@ -33,7 +33,7 @@ function AppContent() {
 
   return (
     <div className="bg-afro-bg min-h-screen text-white selection:bg-afro-orange selection:text-white">
-      <audio ref={audioRef} src="/Music/bg.mp3" loop preload="auto" />
+      <audio ref={audioRef} src="/Music/bg.mp3" loop preload="none" />
       <Navbar />
       {/* Hide the music pill on /media — the episode mini-player is the only
           floating audio control on that page. */}

@@ -33,3 +33,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Generated at build by scripts/optimize-assets.mjs
+public/generated/
+public/og/*.png

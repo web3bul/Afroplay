@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Mic, PlayCircle, Play, Clock, ArrowRight, Mail, Quote, Send, Search, X, Youtube, ChevronDown, Calendar } from 'lucide-react';
 import Contact from '../components/Contact';
 import PageMeta, { JsonLd } from '../components/PageMeta';
-import { mediaPageSchema, mediaFaqSchema } from '../lib/jsonld';
+import { mediaPageSchema, mediaFaqSchema, episodeCount } from '../lib/jsonld';
 import { useInView } from '../hooks/useInView';
 import { episodes, Episode } from '../data/episodes';
 
@@ -340,9 +340,9 @@ const MediaPage: React.FC = () => {
     <main style={{ paddingBottom: miniPlayerActive ? 'max(0px, 96px)' : undefined }}>
       <PageMeta
         title="Onchain Africa — Live Interviews with African Web3 Founders | AfroPlay"
-        description="Onchain Africa is a live interview series spotlighting African Web3 founders and builders. 25+ episodes covering payments, gaming, DeFi and infrastructure. Hosted by Web3bull."
+        description={`Onchain Africa is a live interview series spotlighting African Web3 founders and builders. ${episodeCount} episodes covering payments, gaming, DeFi and infrastructure. Hosted by Web3bull.`}
         canonical="https://afroplay.org/media"
-        ogImage="https://afroplay.org/og/media.svg"
+        ogImage="https://afroplay.org/og/media.png"
       />
       <JsonLd data={mediaPageSchema} />
       <JsonLd data={mediaFaqSchema} />
@@ -1160,7 +1160,7 @@ const MediaPage: React.FC = () => {
             {([
               {
                 q: 'What is Onchain Africa?',
-                a: 'Onchain Africa is a live interview series by AfroPlay that spotlights African Web3 founders and builders. Hosted by Web3bull, the show features unscripted conversations about how African innovators are building on the blockchain. Onchain Africa has produced 24+ episodes covering payments, gaming, DeFi, NFTs, and infrastructure.',
+                a: `Onchain Africa is a live interview series by AfroPlay that spotlights African Web3 founders and builders. Hosted by Web3bull, the show features unscripted conversations about how African innovators are building on the blockchain. Onchain Africa has produced ${episodeCount} episodes covering payments, gaming, DeFi, NFTs, and infrastructure.`,
               },
               {
                 q: 'How do I get featured on Onchain Africa?',

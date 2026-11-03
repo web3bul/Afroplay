@@ -3,6 +3,9 @@
 // visible to JavaScript-executing crawlers (Googlebot, Bing, Perplexity).
 import { episodes } from '../data/episodes';
 
+/** Published (aired) episode count — keeps copy in sync with data/episodes.ts. */
+export const episodeCount = episodes.filter((e) => e.status !== 'upcoming').length;
+
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
 function durationToISO8601(mmss: string): string {
@@ -125,7 +128,7 @@ export const mediaFaqSchema = {
       name: 'What is Onchain Africa?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Onchain Africa is a live interview series by AfroPlay that spotlights African Web3 founders and builders. Hosted by Web3bull, the show features unscripted conversations about how African innovators are building on the blockchain. Onchain Africa has produced 25+ episodes covering payments, gaming, DeFi, NFTs, and infrastructure.',
+        text: `Onchain Africa is a live interview series by AfroPlay that spotlights African Web3 founders and builders. Hosted by Web3bull, the show features unscripted conversations about how African innovators are building on the blockchain. Onchain Africa has produced ${episodeCount} episodes covering payments, gaming, DeFi, NFTs, and infrastructure.`,
       },
     },
     {

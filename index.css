@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #0F0502;
+  color: white;
+  /* Clip horizontal overflow without breaking position:sticky (unlike overflow-x:hidden) */
+  overflow-x: clip;
+}
+.neon-text {
+  text-shadow: 0 0 10px rgba(255, 107, 0, 0.5);
+}
+.neon-box {
+  box-shadow: 0 0 20px rgba(255, 107, 0, 0.15);
+}
+@keyframes africa-float {
+  0%   { transform: translate3d(0,    0, 0) scale(1);    }
+  50%  { transform: translate3d(0, -12px, 0) scale(1.02); }
+  100% { transform: translate3d(0,    0, 0) scale(1);    }
+}
+@keyframes africa-glow {
+  0%, 100% { opacity: 0.7; }
+  50%       { opacity: 1;   }
+}
+@keyframes africa-flag-drift {
+  0%, 100% { transform: translate3d(0,     0, 0); }
+  50%      { transform: translate3d(0, 1.5px, 0); }
+}
+@keyframes africa-flag-twinkle {
+  0%, 100% { opacity: 0.6;  }
+  50%      { opacity: 0.95; }
+}
+.africa-map-float    { animation: africa-float   18s ease-in-out infinite; }
+.africa-glow-pulse   { animation: africa-glow     6s ease-in-out infinite; }
+.africa-flag-drift   { animation: africa-flag-drift  10s ease-in-out infinite; }
+.africa-flag-twinkle { animation: africa-flag-twinkle  6s ease-in-out infinite; }
+
+/* On-load entrance animations */
+@keyframes slideUp      { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideInLeft  { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes fadeInAnim   { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scaleInAnim  { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+.anim-slide-up   { animation: slideUp     0.65s ease-out forwards; }
+.anim-slide-left { animation: slideInLeft  0.55s ease-out forwards; }
+.anim-fade-in    { animation: fadeInAnim   0.65s ease-out forwards; }
+.anim-scale-in   { animation: scaleInAnim  0.65s ease-out forwards; }
+
+/* Marquee (preserved for compatibility) */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.animate-marquee       { animation: marquee 32s linear infinite; }
+.animate-marquee:hover { animation-play-state: paused; }
+
+/* Scrollbar utility */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Delay helpers */
+.anim-d1 { animation-delay: 0.10s; opacity: 0; }
+.anim-d2 { animation-delay: 0.25s; opacity: 0; }
+.anim-d3 { animation-delay: 0.40s; opacity: 0; }
+.anim-d4 { animation-delay: 0.55s; opacity: 0; }
+.anim-d5 { animation-delay: 0.70s; opacity: 0; }
+.anim-d6 { animation-delay: 0.85s; opacity: 0; }
+.anim-d7 { animation-delay: 1.00s; opacity: 0; }
+.anim-d8 { animation-delay: 1.15s; opacity: 0; }
+
+/* ── Mobile overrides (<768 px) ─────────────────────────────────────────
+   On phones, fast flick-scrolling outruns IntersectionObserver. Kill all
+   entrance animations so sections are always visible. Also disable the
+   floating/glow infinite animations that burn battery and scroll FPS. */
+@media (max-width: 767px) {
+  .anim-slide-up, .anim-slide-left, .anim-fade-in, .anim-scale-in,
+  .anim-d1, .anim-d2, .anim-d3, .anim-d4,
+  .anim-d5, .anim-d6, .anim-d7, .anim-d8 {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .africa-map-float, .africa-glow-pulse,
+  .africa-flag-drift, .africa-flag-twinkle,
+  .animate-marquee {
+    animation: none !important;
+  }
+}
+
+/* ── Respect prefers-reduced-motion at all widths ───────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .anim-slide-up, .anim-slide-left, .anim-fade-in, .anim-scale-in,
+  .anim-d1, .anim-d2, .anim-d3, .anim-d4,
+  .anim-d5, .anim-d6, .anim-d7, .anim-d8 {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .africa-map-float, .africa-glow-pulse,
+  .africa-flag-drift, .africa-flag-twinkle,
+  .animate-marquee {
+    animation: none !important;
+  }
+}
