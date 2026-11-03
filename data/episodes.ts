@@ -10,6 +10,7 @@ export interface Episode {
   duration: string;
   tags: string[];
   youtubeUrl: string;
+  aired?: string; // ISO date (YYYY-MM-DD) the episode aired; used for VideoObject uploadDate
   status?: 'upcoming'; // only set for scheduled episodes not yet aired
 }
 
@@ -17,6 +18,7 @@ export const episodes: Episode[] = [
   // -- EP 42 -- aired 2026-10-29 --
   {
     id: 42,
+    aired: "2026-10-29",
     videoId: "eAXLfto00_E",
     title: "From Retail Crypto Trader to Building the Tool He Wished He Had",
     guest: "Uche Crypt",
@@ -31,6 +33,7 @@ export const episodes: Episode[] = [
   // -- EP 41 -- aired 2026-10-27 --
   {
     id: 41,
+    aired: "2026-10-27",
     videoId: "l7BceNeBhHI",
     title: "Building the fastest Neobank to convert crypto assets to fiat. Live with @ToochukwuOkoro2 (@useazza)",
     guest: "Azzaman",
@@ -45,6 +48,7 @@ export const episodes: Episode[] = [
   // -- EP 40 -- aired 2026-10-13 --
   {
     id: 40,
+    aired: "2026-10-13",
     videoId: "KnWXc-UVqwI",
     title: "Tap Your Phone. Pay in USDC. | @bejaay24 (@taprails)",
     guest: "Bolaji",
@@ -59,6 +63,7 @@ export const episodes: Episode[] = [
   // -- EP 39 -- aired 2026-10-10 -- (published 2026-10-12)
   {
     id: 39,
+    aired: "2026-10-10",
     videoId: "rEmAtflPQPI",
     title: "Why @PawasaveHQ Chose cNGN Over USDC | Onchain Africa",
     guest: "Perry Paschal",
@@ -73,6 +78,7 @@ export const episodes: Episode[] = [
   // -- EP 38 -- aired 2026-09-19 --
   {
     id: 38,
+    aired: "2026-09-19",
     videoId: "45wm13kt6lc",
     title: "He (@_ChrisOketch) Left Base to Fix African Stablecoin Payments with @minisendapp",
     guest: "Chris Oketch",
@@ -87,6 +93,7 @@ export const episodes: Episode[] = [
   // -- EP 37 -- aired 2026-09-11 --
   {
     id: 37,
+    aired: "2026-09-11",
     videoId: "LOxse4rvKUE",
     title: "Launch a Crypto Exchange in Weeks, Not Years | @Abala_kparobo ( @FinnaHQ )",
     guest: "Abala Kparobo",
@@ -101,6 +108,7 @@ export const episodes: Episode[] = [
   // -- EP 36 -- aired 2026-09-09 --
   {
     id: 36,
+    aired: "2026-09-09",
     videoId: "Xrvzd9Zd8AA",
     title: "Onchain Africa: Live with Nas Finance",
     guest: "Almarat Arnu Ngutulu",
@@ -115,6 +123,7 @@ export const episodes: Episode[] = [
   // -- EP 35 -- aired 2026-09-04 --
   {
     id: 35,
+    aired: "2026-09-04",
     videoId: "XfddplFTCJ4",
     title: "Onchain Africa: Live with @danieldzansi96 building @zazapayofficial",
     guest: "Daniel",
@@ -129,6 +138,7 @@ export const episodes: Episode[] = [
   // -- EP 34 -- aired 2026-08-27 --
   {
     id: 34,
+    aired: "2026-08-27",
     videoId: "rO7melurstw",
     title: "Onchain Africa: Live with @koxy_Dev ( @choppaddi )",
     guest: "KOXY",
@@ -143,6 +153,7 @@ export const episodes: Episode[] = [
   // -- EP 33 -- aired 2026-08-04 --
   {
     id: 33,
+    aired: "2026-08-04",
     videoId: "BUdp6u_O-3I",
     title: "The Internet Has No Trust Layer: @DaviesLisbon (@CidentiaID)",
     guest: "DAVID",
@@ -157,6 +168,7 @@ export const episodes: Episode[] = [
   // -- EP 32 -- aired 2026-07-28 --
   {
     id: 32,
+    aired: "2026-07-28",
     videoId: "hnOTJP5MUno",
     title: "Spend Stablecoins Without Converting: @UgwuagbaBenard (@JustXpend_ai)",
     guest: "Benard Ugwuagba",
@@ -171,6 +183,7 @@ export const episodes: Episode[] = [
   // -- EP 31 -- aired 2026-07-24 --
   {
     id: 31,
+    aired: "2026-07-24",
     videoId: "8FZa0fVSw3o",
     title: "Yield From Real Businesses, Not Market Cycles: @_karlagod (@BitsaveProtocol)",
     guest: "KarlaGod",
@@ -185,6 +198,7 @@ export const episodes: Episode[] = [
   // -- EP 30 -- aired 2026-07-23 --
   {
     id: 30,
+    aired: "2026-07-23",
     videoId: "oAJhBOzjmPg",
     title: "Stop Missing Grants & Bounties: @0x_beni_ ( @HackListHQ) on Onchain Africa",
     guest: "Beni",
@@ -199,6 +213,7 @@ export const episodes: Episode[] = [
   // -- EP 29 -- aired 2026-07-19 --
   {
     id: 29,
+    aired: "2026-07-19",
     videoId: "dkpmMX4r45U",
     title: "Onchain Africa with @demitchy_ : how dextopus lets any Web3 product accept users from 74 chains",
     guest: "Demitchy",
@@ -213,6 +228,7 @@ export const episodes: Episode[] = [
   // -- EP 28 -- aired 2026-07-16 --
   {
     id: 28,
+    aired: "2026-07-16",
     videoId: "wcCVFAFQJwg",
     title: "Can Streamlivr Really Replace TikTok? Live with @its_mojeezy (@streamlivr_app)",
     guest: "Mo'jeezy",
@@ -227,6 +243,7 @@ export const episodes: Episode[] = [
   // -- EP 27 -- aired 2026-07-14 --
   {
     id: 27,
+    aired: "2026-07-14",
     videoId: "Mm2sS16UQHs",
     title: "Live on Onchain Africa: Trading Tokenized Assets 24/7 with @L7UMVS (@BladTrade)",
     guest: "Leu",
@@ -241,6 +258,7 @@ export const episodes: Episode[] = [
   // -- EP 26 -- aired 2026-07-07 --
   {
     id: 26,
+    aired: "2026-07-07",
     videoId: "kloyjJjplMc",
     title: "Onchain Africa live with John Babodor: How RemmintPay wants businesses to sell and settle instantly",
     guest: "John Babodor",
@@ -255,6 +273,7 @@ export const episodes: Episode[] = [
   // -- EP 25 -- aired 2026-07-02 --
   {
     id: 25,
+    aired: "2026-07-02",
     videoId: "i76mBna6DCY",
     title: "Onchain Africa with Kagondu Yvonne: How Blockwisely became a trusted crypto voice for Africa",
     guest: "Kagondu Yvonne",

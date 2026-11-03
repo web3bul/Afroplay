@@ -37,3 +37,4 @@ dist-ssr
 # Generated at build by scripts/optimize-assets.mjs
 public/generated/
 public/og/*.png
+dist-ssr

@@ -1,8 +1,13 @@
+# Editable text sources for public/og/*.svg. Text in the shipped SVGs is converted to vector paths so the
+# PNG render does not depend on fonts installed on the build machine. After editing a source:
+#   cp scripts/og-src/NAME.svg public/og/NAME.svg && python3 scripts/og-text-to-paths.py w public/og/NAME.svg
+# (needs: pip install fonttools; npm i --no-save @fontsource/russo-one @fontsource/outfit)
 import re,sys,html
 from fontTools.ttLib import TTFont
 from fontTools.pens.svgPathPen import SVGPathPen
 from fontTools.pens.transformPen import TransformPen
-B='/tmp/claude-0/-home-claude/c7c208f2-dcab-58fc-a607-0b4364b1c7c4/scratchpad/ogtool/node_modules/@fontsource/'
+import os
+B=os.path.join(os.getcwd(),'node_modules','@fontsource')+'/'
 F={'heading':B+'russo-one/files/russo-one-latin-400-normal.woff','reg':B+'outfit/files/outfit-latin-400-normal.woff','bold':B+'outfit/files/outfit-latin-700-normal.woff'}
 fonts={k:TTFont(v) for k,v in F.items()}
 def pick(fam,weight):

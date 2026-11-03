@@ -5,13 +5,15 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import MediaPage from './pages/MediaPage';
 import BrandRedirect from './pages/BrandRedirect';
+import EpisodePage from './pages/EpisodePage';
+import NotFound from './pages/NotFound';
 
 // Inner component so it can call useLocation (must be inside BrowserRouter).
-function AppContent() {
+export function AppContent() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isAudioOn, setIsAudioOn] = useState(false);
   const location = useLocation();
-  const isMedia = location.pathname === '/media';
+  const isMedia = location.pathname === '/media' || location.pathname.startsWith('/media/');
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -66,7 +68,9 @@ function AppContent() {
             where the paused state is shown. Restore the GamingPage route to reopen. */}
         <Route path="/gaming" element={<Navigate to="/" replace />} />
         <Route path="/media" element={<MediaPage />} />
+        <Route path="/media/:slug" element={<EpisodePage />} />
         <Route path="/brand" element={<BrandRedirect />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
