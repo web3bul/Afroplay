@@ -15,6 +15,21 @@ export interface Episode {
 }
 
 export const episodes: Episode[] = [
+  // -- EP 43 -- aired 2026-11-05 --
+  {
+    id: 43,
+    aired: "2026-11-05",
+    videoId: "n2hyj6FUqj8",
+    title: "HOW THEY WENT FROM ZERO TO 20K+ PLAYERS IN 2 MONTHS",
+    guest: "Origin Wars Founders",
+    guestHandle: "@originwars_",
+    guestImage: "https://pbs.twimg.com/profile_images/2090055995833647104/wCyXgu2J_400x400.jpg",
+    project: "Origin Wars",
+    projectHandle: "@originwars_",
+    duration: "22:44",
+    tags: ["Gaming", "Web3"],
+    youtubeUrl: "https://www.youtube.com/watch?v=n2hyj6FUqj8",
+  },
   // -- EP 42 -- aired 2026-10-29 --
   {
     id: 42,
